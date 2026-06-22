@@ -110,10 +110,11 @@ body {
   width: 28px; height: 28px; border-radius: var(--r-sm);
   display: flex; align-items: center; justify-content: center;
   font-size: 14px; flex-shrink: 0;
-  background: var(--bg-3);
+  background: var(--bg-3); color: var(--text-3);
 }
-.nav-item.active .nav-icon { background: rgba(0,159,217,0.12); }
-.nav-item:hover .nav-icon { background: var(--border); }
+.nav-icon svg { width: 15px; height: 15px; stroke: currentColor; }
+.nav-item.active .nav-icon { background: rgba(0,159,217,0.12); color: var(--accent); }
+.nav-item:hover .nav-icon { background: var(--border); color: var(--accent); }
 
 .nav-divider { height: 1px; background: var(--border); margin: 8px 16px; }
 
@@ -441,28 +442,31 @@ body {
     <div class="nav-group">
       <div class="nav-group-label">Portal</div>
       <button class="nav-item active" onclick="showPage('about',this)">
-        <span class="nav-icon">🏠</span> About MOPS
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span> About MOPS
       </button>
       <button class="nav-item" onclick="showPage('team',this)">
-        <span class="nav-icon">👥</span> The team
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> The team
       </button>
       <button class="nav-item" onclick="showPage('intake',this)">
-        <span class="nav-icon">📬</span> Campaign intake
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></span> Campaign intake
       </button>
       <button class="nav-item" onclick="showPage('library',this)">
-        <span class="nav-icon">📚</span> MOPS Library
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> MOPS Library
       </button>
       <button class="nav-item" onclick="showPage('onboarding',this)">
-        <span class="nav-icon">🎓</span> New hire onboarding
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span> New hire onboarding
       </button>
       <button class="nav-item" onclick="showPage('qa',this)">
-        <span class="nav-icon">✅</span> Campaign QA
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span> Campaign QA
       </button>
       <button class="nav-item" onclick="showPage('bulletin',this)">
-        <span class="nav-icon">📌</span> MOPS Bulletin
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span> MOPS Bulletin
       </button>
       <button class="nav-item" onclick="showPage('qaward',this)">
-        <span class="nav-icon">🏆</span> QA Excellence Award
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></span> QA Excellence Award
+      </button>
+      <button class="nav-item" onclick="showPage('hqdash',this)">
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span> MOPS HQ Dashboard
       </button>
     </div>
 
@@ -471,13 +475,10 @@ body {
     <div class="nav-group">
       <div class="nav-group-label">Quick links</div>
       <button class="nav-item" onclick="openLink('https://docs.google.com/document/d/1R9DUfJrG-I_G1h-GNp5XWCjz15WBvuUcU_tbfEYy7oM')">
-        <span class="nav-icon">↗</span> Deployment SOP
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span> Deployment SOP
       </button>
       <button class="nav-item">
-        <span class="nav-icon">↗</span> Asana board
-      </button>
-      <button class="nav-item">
-        <span class="nav-icon">↗</span> MOPS HQ
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span> Asana board
       </button>
     </div>
 
@@ -496,7 +497,7 @@ body {
     <div class="section-page active" id="page-about">
       <div class="page-header">
         <div class="page-eyebrow">Overview</div>
-        <div class="page-title">About MOPS</div>
+        <div class="page-title">About Marketing Operations Team (MOPS)</div>
         <div class="page-desc">Who we are, what we do, and who we support across the organization.</div>
       </div>
 
@@ -512,7 +513,7 @@ body {
           <div class="about-card-icon-wrap">⚡</div>
           <div class="about-card-title">What we do</div>
           <div class="about-card-text" style="margin-bottom:14px;">
-            MOPS (Marketing Operations) handles end-to-end campaign deployment — from intake and build to QA and post-launch monitoring. We ensure campaigns are launched efficiently, accurately, and on time. Our scope covers <strong>Campaign Execution & Management</strong> and <strong>Experimentation</strong>.
+            MOPS (Marketing Operations) handles end-to-end campaign deployment — from intake and build to QA and post-launch monitoring. We ensure campaigns are launched efficiently, accurately, and on time.
           </div>
           <div class="section-block-title">High-level responsibilities</div>
           <ul class="about-list">
@@ -660,17 +661,6 @@ body {
 
           </div>
         </div>
-
-        <div class="about-card">
-          <div class="about-card-icon-wrap">🗺</div>
-          <div class="about-card-title">Our process</div>
-          <div class="about-card-text" style="margin-bottom:14px;">
-            Campaigns are assigned within 24–48 hours of intake. We follow a 12-step deployment process covering request, review, build, QA, launch, and post-launch monitoring.
-          </div>
-          <button class="quick-btn" style="font-size:12px;" onclick="document.querySelector('[onclick*=intake]').click()">
-            📬 View full intake process →
-          </button>
-        </div>
       </div>
 
       <div class="divider"></div>
@@ -731,25 +721,6 @@ body {
 
       </div>
 
-      <div class="divider"></div>
-
-      <!-- MOPS HQ Dashboard -->
-      <div class="section-block-title">MOPS at a glance</div>
-      <div style="font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:16px;max-width:640px;">
-        Get a real-time view of how MOPS operates — from the number of campaigns we launch each week, to how our team's capacity is distributed across cross-functional partners. This dashboard reflects our day-to-day throughput and workload so stakeholders always have visibility into what we're working on.
-      </div>
-      <div class="hq-embed-wrap">
-        <div class="hq-embed-header">
-          <div style="display:flex;align-items:center;gap:8px;">
-            <div style="width:8px;height:8px;border-radius:50%;background:var(--teal-mid);box-shadow:0 0 0 2px rgba(16,185,129,0.2);"></div>
-            <span style="font-size:12px;font-weight:500;color:var(--text);">MOPS HQ Dashboard</span>
-          </div>
-          <a href="https://mops-dashboard-sbqrdzy4sa-uw.a.run.app/" target="_blank" rel="noopener" class="hq-open-btn">↗ Open full dashboard</a>
-        </div>
-        <div class="hq-embed-body">
-          <iframe src="https://mops-dashboard-sbqrdzy4sa-uw.a.run.app/" title="MOPS HQ Dashboard" allowfullscreen></iframe>
-        </div>
-      </div>
     </div>
 
     <!-- ════ TEAM PAGE ════ -->
@@ -1828,19 +1799,17 @@ body {
       </div>
 
       <!-- ── CALENDAR TAB ── -->
-      <div class="ob-panel"       <div class="ob-panel" id="ob-calendar">
-        <div style="font-size:13px;color:var(--text-2);margin-bottom:16px;max-width:600px;">
-          This calendar pulls live from the MOPS Onboarding Google Calendar — all topics, sessions, and milestones are managed there and displayed here automatically.
-        </div>
+      <div class="ob-panel" id="ob-calendar">
+        <p style="font-size:13px;color:var(--text-2);margin-bottom:16px;max-width:600px;line-height:1.65;">This calendar pulls live from the MOPS Onboarding Google Calendar — all topics, sessions, and milestones are managed there and displayed here automatically.</p>
 
         <div class="gcal-controls">
           <div class="gcal-status" id="gcal-status">
-            <div class="gcal-status-dot" id="gcal-status-dot"></div>
+            <div class="gcal-status-dot loading" id="gcal-status-dot"></div>
             <span id="gcal-status-text">Loading calendar…</span>
           </div>
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
             <button class="gcal-nav-btn" onclick="changeCalMonth(-1)">← Prev</button>
-            <span class="gcal-month-label" id="gcal-month-label"></span>
+            <span class="gcal-month-label" id="gcal-month-label">—</span>
             <button class="gcal-nav-btn" onclick="changeCalMonth(1)">Next →</button>
             <button class="gcal-nav-btn gcal-today-btn" onclick="goToToday()">Today</button>
           </div>
@@ -1871,7 +1840,6 @@ body {
           </div>
         </div>
 
-        <!-- Event detail panel -->
         <div class="gcal-detail" id="gcal-detail" style="display:none;">
           <div class="gcal-detail-header">
             <div>
@@ -1884,7 +1852,7 @@ body {
         </div>
       </div>
 
-<!-- ── KNOWLEDGE BASE TAB ── -->
+      <!-- ── KNOWLEDGE BASE TAB ── -->
       <div class="ob-panel" id="ob-kb">
         <div class="kb-search-row">
           <input class="kb-search" id="kb-search" type="text" placeholder="Search topics, tools, recordings, or keywords…" oninput="filterKB()" />
@@ -2093,6 +2061,51 @@ body {
 
     </div>
 
+    <!-- ════ MOPS HQ DASHBOARD ════ -->
+    <div class="section-page" id="page-hqdash">
+      <div class="page-header">
+        <div class="page-eyebrow">Operations</div>
+        <div class="page-title">MOPS HQ Dashboard</div>
+        <div class="page-desc">A real-time view of how MOPS operates — campaign volume, team capacity, and workload distribution across cross-functional partners.</div>
+      </div>
+
+      <div class="stats-bar" style="margin-bottom:20px;">
+        <div class="stat">
+          <div class="stat-label">What it tracks</div>
+          <div class="stat-val" style="font-size:14px;padding-top:4px;line-height:1.4;">Weekly launches</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Capacity view</div>
+          <div class="stat-val" style="font-size:14px;padding-top:4px;line-height:1.4;">Team workload</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">XFN visibility</div>
+          <div class="stat-val" style="font-size:14px;padding-top:4px;line-height:1.4;">Partner support</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Updated</div>
+          <div class="stat-val" style="font-size:14px;padding-top:4px;line-height:1.4;">Real-time</div>
+        </div>
+      </div>
+
+      <div class="doc-callout doc-callout-blue" style="margin-bottom:20px;">
+        📊 This dashboard reflects our day-to-day throughput and workload so stakeholders always have visibility into what MOPS is working on. Use it to understand campaign launch cadence, identify capacity risks, and see how the team's effort is distributed across cross-functional partners.
+      </div>
+
+      <div class="hq-embed-wrap">
+        <div class="hq-embed-header">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--teal-mid);box-shadow:0 0 0 2px rgba(16,185,129,0.2);"></div>
+            <span style="font-size:12px;font-weight:500;color:var(--text);">MOPS HQ · Live dashboard</span>
+          </div>
+          <a href="https://mops-dashboard-sbqrdzy4sa-uw.a.run.app/" target="_blank" rel="noopener" class="hq-open-btn">↗ Open full screen</a>
+        </div>
+        <div class="hq-embed-body">
+          <iframe src="https://mops-dashboard-sbqrdzy4sa-uw.a.run.app/" title="MOPS HQ Dashboard" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
   </main>
 </div>
 
@@ -2146,20 +2159,6 @@ body {
 .hof-photo-fallback { font-size: 24px; }
 .hof-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
 .hof-score { font-size: 14px; font-weight: 700; color: var(--accent); }
-</style>
-  display: flex; flex-direction: column; align-items: center;
-  text-align: center; padding: 64px 40px;
-  background: var(--bg); border: 1px dashed var(--border-2);
-  border-radius: var(--r-lg); box-shadow: var(--shadow);
-}
-.placeholder-icon { font-size: 40px; margin-bottom: 16px; opacity: 0.6; }
-.placeholder-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
-.placeholder-text { font-size: 13px; color: var(--text-2); line-height: 1.7; max-width: 380px; margin-bottom: 18px; }
-.placeholder-badge {
-  font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 20px;
-  background: var(--accent-light); color: var(--accent);
-  border: 1px solid var(--border-2);
-}
 </style>
 
 <style>
@@ -2808,6 +2807,11 @@ renderLib();
 
 <style>
 /* ── Onboarding tabs ── */
+.placeholder-state { display:flex; flex-direction:column; align-items:center; text-align:center; padding:64px 40px; background:var(--bg); border:1px dashed var(--border-2); border-radius:var(--r-lg); box-shadow:var(--shadow); }
+.placeholder-icon { font-size:40px; margin-bottom:16px; opacity:0.6; }
+.placeholder-title { font-size:16px; font-weight:600; color:var(--text); margin-bottom:8px; }
+.placeholder-text { font-size:13px; color:var(--text-2); line-height:1.7; max-width:380px; margin-bottom:18px; }
+.placeholder-badge { font-size:11px; font-weight:600; padding:4px 14px; border-radius:20px; background:var(--accent-light); color:var(--accent); border:1px solid var(--border-2); }
 .ob-tabs { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--border); }
 .ob-tab { font-size:12px; font-weight:500; padding:7px 14px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--text-2); cursor:pointer; font-family:inherit; transition:all 0.12s; white-space:nowrap; }
 .ob-tab:hover { border-color:var(--accent); color:var(--accent); }
@@ -2932,8 +2936,6 @@ renderLib();
 .cal-detail-body { display:flex; flex-direction:column; gap:7px; }
 .cal-detail-topic { display:flex; align-items:flex-start; gap:10px; font-size:13px; color:var(--text-2); line-height:1.5; padding:7px 10px; background:var(--bg-2); border-radius:var(--r-sm); }
 .cal-detail-topic-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; margin-top:5px; }
-</style>
-</html>
 .cal-controls { display:flex; align-items:flex-end; gap:12px; margin-bottom:14px; flex-wrap:wrap; }
 .cal-control-group { display:flex; flex-direction:column; gap:5px; }
 .cal-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.07em; color:var(--text-3); }
@@ -2970,8 +2972,6 @@ renderLib();
 .cal-detail-body { display:flex; flex-direction:column; gap:7px; }
 .cal-detail-topic { display:flex; align-items:flex-start; gap:10px; font-size:13px; color:var(--text-2); line-height:1.5; padding:7px 10px; background:var(--bg-2); border-radius:var(--r-sm); }
 .cal-detail-topic-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; margin-top:5px; }
-</style>
-</html>
 .onboard-adapt-banner { display:flex; align-items:flex-start; gap:14px; background:var(--accent-light); border:1px solid var(--border-2); border-left:3px solid var(--accent); border-radius:var(--r); padding:16px 20px; }
 .onboard-adapt-icon { font-size:20px; flex-shrink:0; margin-top:1px; }
 .onboard-adapt-title { font-size:13px; font-weight:600; color:var(--accent); margin-bottom:4px; }
