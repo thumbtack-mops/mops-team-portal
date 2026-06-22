@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MOPS Team Portal</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #ffffff;
+  --bg-2: #f7f6f3;
+  --bg-3: #f0efe9;
+  --text: #1a1a18;
+  --text-2: #6b6a65;
+  --text-3: #9e9d98;
+  --border: rgba(0,0,0,0.09);
+  --border-2: rgba(0,0,0,0.16);
+  --purple-bg: #EEEDFE; --purple-text: #3C3489; --purple-mid: #7F77DD;
+  --teal-bg: #E1F5EE; --teal-text: #085041; --teal-mid: #1D9E75;
+  --amber-bg: #FAEEDA; --amber-text: #633806;
+  --coral-bg: #FAECE7; --coral-text: #712B13;
+  --gray-bg: #F1EFE8; --gray-text: #444441;
+  --r: 10px; --r-sm: 6px; --r-lg: 14px;
+  --sidebar: 224px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1b19; --bg-2: #242422; --bg-3: #2c2c29;
+    --text: #f0efe9; --text-2: #9e9d98; --text-3: #6b6a65;
+    --border: rgba(255,255,255,0.07); --border-2: rgba(255,255,255,0.14);
+    --purple-bg: #3C3489; --purple-text: #CECBF6;
+    --teal-bg: #085041; --teal-text: #9FE1CB;
+    --amber-bg: #633806; --amber-text: #FAC775;
+    --coral-bg: #712B13; --coral-text: #F5C4B3;
+    --gray-bg: #3a3a37; --gray-text: #D3D1C7;
+  }
+}
+
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg-3); color: var(--text); min-height: 100vh; }
+
+/* Layout */
+.app { display: flex; min-height: 100vh; }
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar); flex-shrink: 0;
+  background: var(--bg); border-right: 0.5px solid var(--border);
+  display: flex; flex-direction: column;
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+}
+.sidebar-head {
+  padding: 20px 18px 16px;
+  border-bottom: 0.5px solid var(--border);
+}
+.sidebar-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: var(--text-3); margin-bottom: 3px; }
+.sidebar-title { font-size: 15px; font-weight: 500; color: var(--text); }
+.sidebar-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+
+.nav-group { padding: 14px 0 6px; }
+.nav-group-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); padding: 0 18px; margin-bottom: 4px; }
+.nav-item {
+  display: flex; align-items: center; gap: 9px;
+  padding: 8px 18px; font-size: 13px; color: var(--text-2);
+  cursor: pointer; border-left: 2px solid transparent;
+  transition: all 0.12s; text-decoration: none; background: none; border-top: none; border-right: none; border-bottom: none; width: 100%; text-align: left; font-family: inherit;
+}
+.nav-item:hover { background: var(--bg-2); color: var(--text); }
+.nav-item.active { color: var(--text); border-left-color: var(--purple-mid); background: var(--bg-2); font-weight: 500; }
+.nav-icon { font-size: 15px; flex-shrink: 0; width: 18px; text-align: center; }
+
+.sidebar-footer { margin-top: auto; padding: 14px 18px; border-top: 0.5px solid var(--border); }
+.footer-label { font-size: 11px; color: var(--text-3); }
+
+/* Main */
+.main { flex: 1; min-width: 0; }
+
+/* Section pages */
+.section-page { display: none; padding: 36px 40px; max-width: 900px; }
+.section-page.active { display: block; }
+
+.page-title { font-size: 22px; font-weight: 500; margin-bottom: 6px; }
+.page-desc { font-size: 14px; color: var(--text-2); margin-bottom: 28px; line-height: 1.6; }
+.divider { height: 0.5px; background: var(--border); margin: 28px 0; }
+
+/* Cards */
+.card {
+  background: var(--bg); border: 0.5px solid var(--border);
+  border-radius: var(--r); padding: 18px 20px; margin-bottom: 10px;
+}
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.card-sm { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--r); padding: 14px 16px; }
+
+/* Tags */
+.tag { display: inline-block; font-size: 11px; padding: 2px 9px; border-radius: 20px; font-weight: 500; }
+.tag-purple { background: var(--purple-bg); color: var(--purple-text); }
+.tag-teal { background: var(--teal-bg); color: var(--teal-text); }
+.tag-amber { background: var(--amber-bg); color: var(--amber-text); }
+.tag-coral { background: var(--coral-bg); color: var(--coral-text); }
+.tag-gray { background: var(--gray-bg); color: var(--gray-text); }
+
+/* Team section */
+.team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+.member-card {
+  background: var(--bg); border: 0.5px solid var(--border);
+  border-radius: var(--r); padding: 16px; text-align: center;
+  transition: border-color 0.12s;
+}
+.member-card:hover { border-color: var(--border-2); }
+.avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 500; margin: 0 auto 10px;
+}
+.member-name { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+.member-role { font-size: 12px; color: var(--text-2); margin-bottom: 8px; line-height: 1.4; }
+
+/* About section */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.about-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--r); padding: 18px 20px; }
+.about-card-icon { font-size: 20px; margin-bottom: 10px; }
+.about-card-title { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+.about-card-text { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+.about-list { list-style: none; }
+.about-list li { font-size: 13px; color: var(--text-2); padding: 5px 0; border-bottom: 0.5px solid var(--border); display: flex; align-items: center; gap: 8px; }
+.about-list li:last-child { border-bottom: none; }
+.about-list-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--purple-mid); flex-shrink: 0; }
+
+/* Intake process */
+.step-list { display: flex; flex-direction: column; gap: 8px; }
+.step-card {
+  background: var(--bg); border: 0.5px solid var(--border);
+  border-radius: var(--r); overflow: hidden;
+  transition: border-color 0.12s;
+}
+.step-card:hover { border-color: var(--border-2); }
+.step-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 18px; cursor: pointer;
+}
+.step-num {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 500; flex-shrink: 0;
+}
+.step-title { font-size: 13px; font-weight: 500; flex: 1; }
+.step-meta { font-size: 12px; color: var(--text-3); }
+.step-chevron { font-size: 13px; color: var(--text-3); transition: transform 0.18s; margin-left: auto; }
+.step-card.open .step-chevron { transform: rotate(180deg); }
+.step-body { padding: 0 18px 16px 56px; font-size: 13px; color: var(--text-2); line-height: 1.65; display: none; }
+.step-card.open .step-body { display: block; }
+.step-body ul { padding-left: 1rem; margin-top: 6px; }
+.step-body li { margin-bottom: 4px; }
+.step-owner { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; margin-top: 8px; padding: 3px 9px; border-radius: 20px; background: var(--bg-2); color: var(--text-2); }
+
+/* Library */
+.lib-search-row { display: flex; gap: 8px; margin-bottom: 12px; }
+.lib-search {
+  flex: 1; font-size: 13px; padding: 9px 12px;
+  border: 0.5px solid var(--border-2); border-radius: var(--r-sm);
+  background: var(--bg-2); color: var(--text); outline: none; font-family: inherit;
+}
+.lib-search:focus { box-shadow: 0 0 0 3px rgba(127,119,221,0.15); border-color: var(--purple-mid); }
+.lib-search::placeholder { color: var(--text-3); }
+.ask-btn {
+  font-size: 13px; padding: 9px 16px;
+  border: 0.5px solid var(--purple-mid); border-radius: var(--r-sm);
+  background: var(--purple-bg); color: var(--purple-text);
+  cursor: pointer; font-family: inherit; font-weight: 500; white-space: nowrap;
+  transition: opacity 0.12s;
+}
+.ask-btn:hover { opacity: 0.82; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+.chip {
+  font-size: 12px; padding: 4px 12px; border-radius: 20px;
+  border: 0.5px solid var(--border); background: transparent;
+  color: var(--text-2); cursor: pointer; font-family: inherit; transition: all 0.12s;
+}
+.chip:hover { border-color: var(--border-2); color: var(--text); }
+.chip.active { background: var(--bg-2); border-color: var(--border-2); color: var(--text); font-weight: 500; }
+
+.ai-answer { background: var(--bg-2); border-radius: var(--r); padding: 14px 16px; margin-bottom: 18px; display: none; }
+.ai-answer.show { display: block; }
+.ai-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.ai-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-3); display: flex; align-items: center; gap: 6px; }
+.ai-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal-mid); }
+.ai-dot.thinking { animation: blink 1s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+.ai-close { background: none; border: none; cursor: pointer; color: var(--text-3); font-size: 15px; font-family: inherit; }
+.ai-text { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+
+.lib-section { margin-bottom: 24px; }
+.lib-section-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-3); margin-bottom: 10px; }
+.lib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); gap: 8px; }
+.lib-card {
+  background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--r);
+  padding: 14px; display: flex; flex-direction: column; gap: 6px;
+  text-decoration: none; transition: border-color 0.12s, transform 0.1s; cursor: pointer;
+}
+.lib-card:hover { border-color: var(--border-2); transform: translateY(-1px); }
+.lib-card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.lib-card-icon { width: 30px; height: 30px; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; font-size: 15px; }
+.lib-card-ext { font-size: 13px; color: var(--text-3); }
+.lib-card-title { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.35; }
+.lib-card-desc { font-size: 12px; color: var(--text-2); line-height: 1.5; flex: 1; }
+.lib-card-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 2px; }
+.link-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--border-2); }
+.link-dot.on { background: var(--teal-mid); }
+.empty-state { text-align: center; padding: 40px; color: var(--text-3); font-size: 13px; }
+
+/* Stats bar */
+.stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 24px; }
+.stat { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--r); padding: 14px 16px; }
+.stat-label { font-size: 11px; color: var(--text-3); margin-bottom: 3px; }
+.stat-val { font-size: 20px; font-weight: 500; }
+
+/* Intake quick links */
+.quick-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.quick-btn {
+  font-size: 12px; padding: 6px 14px; border-radius: 20px;
+  border: 0.5px solid var(--border-2); background: transparent;
+  color: var(--text-2); cursor: pointer; font-family: inherit;
+  display: flex; align-items: center; gap: 5px; transition: all 0.12s;
+}
+.quick-btn:hover { background: var(--bg-2); color: var(--text); }
+</style>
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-head">
+      <div class="sidebar-eyebrow">Marketing Operations</div>
+      <div class="sidebar-title">MOPS Team Portal</div>
+      <div class="sidebar-sub">Internal team resource</div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">Navigate</div>
+      <button class="nav-item active" onclick="showPage('about',this)">
+        <span class="nav-icon">◈</span> About MOPS
+      </button>
+      <button class="nav-item" onclick="showPage('team',this)">
+        <span class="nav-icon">◉</span> The team
+      </button>
+      <button class="nav-item" onclick="showPage('intake',this)">
+        <span class="nav-icon">◧</span> Campaign intake
+      </button>
+      <button class="nav-item" onclick="showPage('library',this)">
+        <span class="nav-icon">◨</span> MOPS Library
+      </button>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">Quick links</div>
+      <button class="nav-item" onclick="openLink('https://docs.google.com/document/d/1R9DUfJrG-I_G1h-GNp5XWCjz15WBvuUcU_tbfEYy7oM')">
+        <span class="nav-icon">↗</span> Deployment SOP
+      </button>
+      <button class="nav-item">
+        <span class="nav-icon">↗</span> Asana board
+      </button>
+      <button class="nav-item">
+        <span class="nav-icon">↗</span> MOPS HQ
+      </button>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="footer-label">MOPS · Updated Jun 2026</div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main class="main">
+
+    <!-- ABOUT PAGE -->
+    <div class="section-page active" id="page-about">
+      <div class="page-title">About MOPS</div>
+      <div class="page-desc">Who we are, what we do, and who we support across the organization.</div>
+
+      <div class="stats-bar">
+        <div class="stat"><div class="stat-label">Team members</div><div class="stat-val">5</div></div>
+        <div class="stat"><div class="stat-label">Channels supported</div><div class="stat-val">4</div></div>
+        <div class="stat"><div class="stat-label">Docs in library</div><div class="stat-val">18</div></div>
+        <div class="stat"><div class="stat-label">Campaign phases</div><div class="stat-val">11</div></div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card" style="grid-column: span 2;">
+          <div class="about-card-icon">◈</div>
+          <div class="about-card-title">What we do</div>
+          <div class="about-card-text" style="margin-bottom:12px;">MOPS (Marketing Operations) handles end-to-end campaign deployment — from intake and build to QA and post-launch monitoring. We ensure campaigns are launched efficiently, accurately, and on time. Our scope covers <strong>Campaign Execution & Management</strong> and <strong>Experimentation</strong>.</div>
+          <div style="font-size:12px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;">High-level responsibilities</div>
+          <ul class="about-list">
+            <li><span class="about-list-dot"></span>Responsible for all campaign execution activities from intake to post-analysis.</li>
+            <li><span class="about-list-dot"></span>Handles operational and tactical execution, including audience segmentation, journey building, and launch.</li>
+            <li><span class="about-list-dot"></span>Responsible for experimentation setup using Statsig — including setup, QA, maintenance, and reporting.</li>
+            <li><span class="about-list-dot"></span>Owns day-to-day management and troubleshooting of deployed campaigns.</li>
+          </ul>
+        </div>
+
+        <div class="about-card">
+          <div class="about-card-icon">◉</div>
+          <div class="about-card-title">Who we support & collaborate with</div>
+          <ul class="about-list">
+            <li><span class="about-list-dot"></span>Lifecycle Marketing</li>
+            <li><span class="about-list-dot"></span>Product Marketing & Pro Experience</li>
+            <li><span class="about-list-dot"></span>B2B Marketing</li>
+            <li><span class="about-list-dot"></span>Research</li>
+            <li><span class="about-list-dot"></span>Brand</li>
+            <li><span class="about-list-dot"></span>MarTech</li>
+            <li><span class="about-list-dot"></span>Engineering</li>
+            <li><span class="about-list-dot"></span>Data Science</li>
+          </ul>
+        </div>
+
+        <div class="about-card">
+          <div class="about-card-icon">◧</div>
+          <div class="about-card-title">Tools & platforms</div>
+          <div style="font-size:11px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Owned & managed</div>
+          <ul class="about-list" style="margin-bottom:10px;">
+            <li><span class="about-list-dot"></span>Iterable</li>
+          </ul>
+          <div style="font-size:11px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Co-owned</div>
+          <ul class="about-list" style="margin-bottom:10px;">
+            <li><span class="about-list-dot"></span>Salesforce Marketing Cloud Account Engagement (Pardot)</li>
+          </ul>
+          <div style="font-size:11px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Direct access, build only</div>
+          <ul class="about-list">
+            <li><span class="about-list-dot"></span>Hightouch</li>
+            <li><span class="about-list-dot"></span>Statsig</li>
+            <li><span class="about-list-dot"></span>Contentful</li>
+          </ul>
+        </div>
+
+        <div class="about-card">
+          <div class="about-card-icon">◨</div>
+          <div class="about-card-title">Our process</div>
+          <div class="about-card-text" style="margin-bottom:10px;">Campaigns are assigned within 24–48 hours of intake. We follow an 11-step deployment process covering request, review, build, QA, launch, and post-launch monitoring.</div>
+          <div style="font-size:12px;color:var(--text-2);">See the full process in the <span style="color:var(--purple-text);cursor:pointer;" onclick="document.querySelector('[onclick*=intake]').click()">Campaign intake →</span> section.</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div style="font-size:13px;font-weight:500;margin-bottom:12px;">Channels we support</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <span class="tag tag-purple">Email</span>
+        <span class="tag tag-teal">Push notifications</span>
+        <span class="tag tag-amber">In-app messaging</span>
+        <span class="tag tag-coral">Landing pages</span>
+      </div>
+    </div>
+
+    <!-- TEAM PAGE -->
+    <div class="section-page" id="page-team">
+      <div class="page-title">The team</div>
+      <div class="page-desc">Meet the MOPS crew — click any card to see lane focus details.</div>
+
+      <style>
+        .member-card { cursor: pointer; }
+        .member-card .lanes { display: none; margin-top: 10px; border-top: 0.5px solid var(--border); padding-top: 10px; text-align: left; }
+        .member-card.expanded .lanes { display: block; }
+        .member-card.expanded { border-color: var(--border-2); }
+        .lanes-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-3); margin-bottom: 6px; }
+        .lane-tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; background: var(--bg-2); color: var(--text-2); margin: 2px 2px 2px 0; }
+        .slack-link { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--text-3); margin-top: 8px; text-decoration: none; }
+        .slack-link:hover { color: var(--purple-text); }
+        .avatar-wrap { position: relative; width: 56px; height: 56px; margin: 0 auto 10px; }
+        .avatar-img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; display: block; }
+        .avatar-fallback { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 500; }
+        .team-grid-wide { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; margin-bottom: 20px; }
+      </style>
+
+      <div style="font-size:12px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px;">Manager</div>
+      <div class="team-grid-wide" style="margin-bottom:20px;">
+        <div class="member-card" onclick="toggleMember(this)" style="text-align:center;">
+          <div class="avatar-wrap">
+            <img class="avatar-img" src="seann.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Seann Demafeliz" />
+            <div class="avatar-fallback" style="background:var(--purple-bg);color:var(--purple-text);display:none;">SD</div>
+          </div>
+          <div class="member-name">Seann Demafeliz</div>
+          <div class="member-role">Manager, Marketing Operations</div>
+          <span class="tag tag-purple">Manager</span>
+          <div class="lanes">
+            <div class="lanes-label">Lane focus</div>
+            <span class="lane-tag">Team Leadership & Strategy</span><span class="lane-tag">Vendor Management</span><span class="lane-tag">Stakeholder Management</span><span class="lane-tag">Data Management</span><span class="lane-tag">Capability Optimization</span><span class="lane-tag">Reporting & Analytics</span><span class="lane-tag">Hiring</span><span class="lane-tag">Best Practices Development</span><span class="lane-tag">Issue Triaging & Error Management</span><span class="lane-tag">Email Deliverability</span><span class="lane-tag">Statsig Experiment Review & Approval</span>
+            <div><a class="slack-link" href="https://thumbtack.slack.com/team/UHVEDJZUH" target="_blank" rel="noopener">⟶ @Seann on Slack</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:12px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px;">Operations managers</div>
+      <div class="team-grid-wide" style="margin-bottom:20px;">
+        <div class="member-card" onclick="toggleMember(this)" style="text-align:center;">
+          <div class="avatar-wrap">
+            <img class="avatar-img" src="manel.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Manel Martos" />
+            <div class="avatar-fallback" style="background:var(--teal-bg);color:var(--teal-text);display:none;">MM</div>
+          </div>
+          <div class="member-name">Manel Martos</div>
+          <div class="member-role">Marketing Operations Manager II</div>
+          <span class="tag tag-teal">Manager II</span>
+          <div class="lanes">
+            <div class="lanes-label">Lane focus</div>
+            <span class="lane-tag">Campaign Management</span><span class="lane-tag">Capacity Monitoring</span><span class="lane-tag">New Hire Onboarding & Training</span><span class="lane-tag">Process Documentation</span><span class="lane-tag">Audience Sizing POC (PRO)</span><span class="lane-tag">PRO & B2B POC (SME + QA)</span><span class="lane-tag">Process Improvement</span>
+            <div><a class="slack-link" href="https://thumbtack.slack.com/team/U015E6Z700N" target="_blank" rel="noopener">⟶ @Manel on Slack</a></div>
+          </div>
+        </div>
+        <div class="member-card" onclick="toggleMember(this)" style="text-align:center;">
+          <div class="avatar-wrap">
+            <img class="avatar-img" src="mc.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="MC Flores" />
+            <div class="avatar-fallback" style="background:var(--amber-bg);color:var(--amber-text);display:none;">MC</div>
+          </div>
+          <div class="member-name">MC Flores</div>
+          <div class="member-role">Marketing Operations Manager I</div>
+          <span class="tag tag-amber">Manager I</span>
+          <div class="lanes">
+            <div class="lanes-label">Lane focus</div>
+            <span class="lane-tag">Customer POC (SME + QA)</span><span class="lane-tag">Campaign Execution</span><span class="lane-tag">Stakeholder Communication</span><span class="lane-tag">Peer Review</span><span class="lane-tag">Continuous Improvement & Innovation</span><span class="lane-tag">Escalation</span><span class="lane-tag">Audience Sizing POC (Customer)</span>
+            <div><a class="slack-link" href="https://thumbtack.slack.com/team/U04Q5TWC5BN" target="_blank" rel="noopener">⟶ @MC on Slack</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:12px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px;">Marketing operations associates</div>
+      <div class="team-grid-wide">
+        <div class="member-card" onclick="toggleMember(this)" style="text-align:center;">
+          <div class="avatar-wrap">
+            <img class="avatar-img" src="kim.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Kim Sampaga" />
+            <div class="avatar-fallback" style="background:var(--coral-bg);color:var(--coral-text);display:none;">KS</div>
+          </div>
+          <div class="member-name">Kim Sampaga</div>
+          <div class="member-role">Marketing Operations Associate</div>
+          <span class="tag tag-coral">Associate</span>
+          <div class="lanes">
+            <div class="lanes-label">Lane focus</div>
+            <span class="lane-tag">Customer & PRO Campaign Execution</span><span class="lane-tag">Stakeholder Communication</span><span class="lane-tag">Peer Review</span><span class="lane-tag">Continuous Improvement & Innovation</span><span class="lane-tag">Escalation</span>
+            <div><a class="slack-link" href="https://thumbtack.slack.com/team/U08EDJ5GM6E" target="_blank" rel="noopener">⟶ @kim on Slack</a></div>
+          </div>
+        </div>
+        <div class="member-card" onclick="toggleMember(this)" style="text-align:center;">
+          <div class="avatar-wrap">
+            <img class="avatar-img" src="dimple.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Dimple Buluran" />
+            <div class="avatar-fallback" style="background:var(--gray-bg);color:var(--gray-text);display:none;">DB</div>
+          </div>
+          <div class="member-name">Dimple Buluran</div>
+          <div class="member-role">Marketing Operations Associate</div>
+          <span class="tag tag-gray">Associate</span>
+          <div class="lanes">
+            <div class="lanes-label">Lane focus</div>
+            <span class="lane-tag">Customer & PRO Campaign Execution</span><span class="lane-tag">Stakeholder Communication</span><span class="lane-tag">Peer Review</span><span class="lane-tag">Continuous Improvement & Innovation</span><span class="lane-tag">Escalation</span>
+            <div><a class="slack-link" href="https://thumbtack.slack.com/team/U0AS1M8CYLS" target="_blank" rel="noopener">⟶ @Dimple on Slack</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTAKE PAGE -->
+    <div class="section-page" id="page-intake">
+      <div class="page-title">Campaign intake process</div>
+      <div class="page-desc">End-to-end steps for deploying a campaign — from request submission to post-launch review.</div>
+
+      <div class="quick-row">
+        <button class="quick-btn" onclick="openLink('https://docs.google.com/document/d/1R9DUfJrG-I_G1h-GNp5XWCjz15WBvuUcU_tbfEYy7oM')">↗ Full SOP doc</button>
+        <button class="quick-btn">↗ Asana intake form</button>
+        <button class="quick-btn">↗ Campaign brief template</button>
+        <button class="quick-btn">↗ QA checklist</button>
+      </div>
+
+      <div style="font-size:12px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px;">Intake & planning</div>
+      <div class="step-list" style="margin-bottom:20px;">
+        <div class="step-card" onclick="toggleStep(this)">
+          <div class="step-header">
+            <div class="step-num" style="background:var(--purple-bg);color:var(--purple-text);">1</div>
+            <div class="step-title">Asana request submission</div>
+            <div class="step-meta">Requester</div>
+            <div class="step-chevron">▾</div>
+          </div>
+          <div class="step-body">Complete the Asana Campaign Intake Form — two forms available depending on campaign needs. Select the appropriate one before submitting.
+            <div><span class="step-owner">◈ Action: campaign requester</span></div>
+          </div>
+        </div>
+        <div class="step-card" onclick="toggleStep(this)">
+          <div class="step-header">
+            <div class="step-num" style="background:var(--purple-bg);color:var(--purple-text);">2</div>
+            <div class="step-title">Asana request received</div>
+            <div class="step-meta">Automatic</div>
+            <div class="step-chevron">▾</div>
+          </div>
+          <div class="step-body">Campaign is auto-added to the MOPS Requests & Projects board. If Brand support is needed, also added to the Brand Marketing Hotsheet board.</div>
+        </div>
+        <div class="step-card" onclick="toggleStep(this)">
+          <div class="step-header">
+            <div class="step-num" style="background:var(--purple-bg);color:var(--purple-text);">3</div>
+            <div class="step-title">Review & task assignment</div>
+            <div class="step-meta">Deployment Lead</div>
+            <div class="step-chevron">▾</div>
+          </div>
+          <div class="step-body">MOPS Deployment Lead reviews the request and assigns it to an Associate based on bandwidth, expertise, and familiarity. Done within 24–48 hours.</div>
+        </div>
+        <div class="step-card" onclick="toggleStep(this)">
+          <div class="step-header">
+            <div class="step-num" style="background:var(--purple-bg);color:var(--purple-text);">4</div>
+            <div class="step-title">Campaign brief completion & review</div>
+            <div class="step-meta">Requester + Approver</div>
+            <div class="step-chevron">▾</div>
+          </div>
+          <div class="step-body">MOPS only officially engages once the brief is complete and approved.
+            <ul>
+              <li>Lifecycle / Iterable campaigns → Josh Mack</li>
+              <li>PRO B2B & Sales campaigns → Brittany Slay</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:12px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px;">Build</div>
+      <div class="step-list" style="margin-bottom:20px;">
+        <div class="step-card" onclick="toggleStep(this)">
+          <div class="step-header">
+            <div class="step-num" style="background:var(--teal-bg);color:var(--teal-text);">5</div>
+            <div class="step-title">MOPS review & assessment</div>
+            <div class="step-meta">MOPS Associate</div>
+            <div class="step-chevron">▾</div>
+          </div>
+          <div class="step-body">Advance review to keep timelines on track. Checks: creative assets, audience, journey structure, experiment setup, campaign labels, deep links, XFN support, handlebar logic.</div>
+        </div>
+        <div class="step-card" onclick="toggleStep(this)">
+          <div class="step-header">
+            <div class="step-num" style="background:var(--teal-bg);color:var(--teal-text);">6</div>
+            <div class="step-title">MOPS campaign build</div>
+            <div class="step-meta">MOPS Associate</div>
+            <div class="step-chevron">▾</div>
+          </div>
+          <div class="step-body">Full build once brief is approved. Stages (can run in parallel):
+            <ul>
+              <li>MarTech/Enablement pod scoping</li>
+              <li>Creative handoff & dev work (Gooey or Figma-Free)</li>
+              <li>Asset check — UTMs, snippets, handlebar logic</li>
+              <li>Audience build in Iterable or list import</li>
+              <li>Journey configuration with delays, filters, holdouts</li>
+              <li>Experiment setup via Statsig (if applicable)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:12px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px;">QA & proofing</div>
+      <div class="step-list" style="margin-bottom:20px;">
+        <div class="step-card" onclick="toggleStep(this)">
+          <div class="step-header">
+            <div class="step-num" style="background:var(--amber-bg);color:var(--amber-text);">7</div>
+            <div class="step-title">Asset proofing</div>
+            <div class="step-meta">MOPS + Stakeholders</div>
+            <div class="step-chevron">▾</div>
+          </div>
+          <div class="step-body">Two types running in parallel: MOPS internal QA (rendering, deep links, QA checklist) and stakeholder proofing (visual sign-off, CTAs, UTMs, handlebar logic).</div>
+        </div>
+        <div class="step-card" onclick="toggleStep(this)">
+          <div class="step-header">
+            <div class="step-num" style="background:var(--amber-bg);color:var(--amber-text);">8</div>
+            <div class="step-title">MOPS campaign review & QA</div>
+            <div class="step-meta">MOPS Team</div>
+            <div class="step-chevron">▾</div>
+          </div>
+          <div class="step-body">Three review stages: Self review (mandatory), Peer review (mandatory — clears for launch), Final review (optional for complex campaigns). Plus 24-hour post-launch review for triggered campaigns.</div>
+        </div>
+      </div>
+
+      <div style="font-size:12px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:10px;">Launch & post-launch</div>
+      <div class="step-list">
+        <div class="step-card" onclick="toggleStep(this)">
+          <div class="step-header">
+            <div class="step-num" style="background:var(--coral-bg);color:var(--coral-text);">9</div>
+            <div class="step-title">Campaign launch</div>
+            <div class="step-meta">MOPS Associate</div>
+            <div class="step-chevron">▾</div>
+          </div>
+          <div class="step-body">Proofing approved, peer reviews finalized, workflow scheduled and enabled. MOPS Requirements updated in brief for Data Science. Asana task marked complete.</div>
+        </div>
+        <div class="step-card" onclick="toggleStep(this)">
+          <div class="step-header">
+            <div class="step-num" style="background:var(--coral-bg);color:var(--coral-text);">10</div>
+            <div class="step-title">Post-launch QA monitoring</div>
+            <div class="step-meta">MOPS Associate</div>
+            <div class="step-chevron">▾</div>
+          </div>
+          <div class="step-body">Confirm users entered journey correctly. Cross-check sends vs. audience size. Set up Looker alerts. Encode experiment lists. Monitor MOPS Metrics for QA score.</div>
+        </div>
+        <div class="step-card" onclick="toggleStep(this)">
+          <div class="step-header">
+            <div class="step-num" style="background:var(--coral-bg);color:var(--coral-text);">11</div>
+            <div class="step-title">Send MOPS feedback survey</div>
+            <div class="step-meta">MOPS Associate</div>
+            <div class="step-chevron">▾</div>
+          </div>
+          <div class="step-body">Send after complex campaigns (POCs, launches, large campaigns) or when the stakeholder is new to MOPS.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIBRARY PAGE -->
+    <div class="section-page" id="page-library">
+      <div class="page-title">MOPS Library</div>
+      <div class="page-desc">All MOPS docs and resources in one place. Search, filter, or ask AI.</div>
+
+      <div class="lib-search-row">
+        <input class="lib-search" id="lib-search" placeholder="Search docs, or ask AI a question about MOPS…" oninput="filterLib()" onkeydown="if(event.key==='Enter')askAI()" />
+        <button class="ask-btn" onclick="askAI()">Ask AI ✦</button>
+      </div>
+      <div class="chips">
+        <button class="chip active" onclick="setChip('all',this)">All</button>
+        <button class="chip" onclick="setChip('sop',this)">SOPs</button>
+        <button class="chip" onclick="setChip('guide',this)">Guides</button>
+        <button class="chip" onclick="setChip('template',this)">Templates</button>
+        <button class="chip" onclick="setChip('tracker',this)">Trackers</button>
+        <button class="chip" onclick="setChip('ref',this)">References</button>
+      </div>
+
+      <div class="ai-answer" id="ai-answer">
+        <div class="ai-top">
+          <div class="ai-label"><div class="ai-dot" id="ai-dot"></div> AI answer</div>
+          <button class="ai-close" onclick="document.getElementById('ai-answer').classList.remove('show')">✕</button>
+        </div>
+        <div class="ai-text" id="ai-text"></div>
+      </div>
+
+      <div id="lib-content"></div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+const LIBRARY = [
+  { category:"Deployment SOPs", items:[
+    { title:"End-to-end campaign deployment process", desc:"Full 11-step guide from Asana intake to post-launch monitoring.", tag:"sop", url:"https://docs.google.com/document/d/1R9DUfJrG-I_G1h-GNp5XWCjz15WBvuUcU_tbfEYy7oM" },
+    { title:"Pardot end-to-end launch process", desc:"Detailed deployment workflow for campaigns launching in Pardot.", tag:"sop", url:"" },
+    { title:"A/B experiment labels & shipping process", desc:"Standards for setting up and shipping A/B experiment labels in Iterable.", tag:"sop", url:"" },
+    { title:"Iterable campaign label SOP", desc:"Naming conventions and process for applying campaign labels.", tag:"sop", url:"" },
+  ]},
+  { category:"Guides & how-tos", items:[
+    { title:"Campaign intake process guide", desc:"How requesters complete and submit the Asana campaign intake form.", tag:"guide", url:"" },
+    { title:"Campaign timeline best practices", desc:"Guidelines for setting realistic timelines and campaign milestones.", tag:"guide", url:"" },
+    { title:"Statsig experiment setup guide", desc:"Step-by-step instructions for configuring experiments in Statsig.", tag:"guide", url:"" },
+    { title:"List import guide for data analysts", desc:"How DAs should pull and format audience lists for Iterable imports.", tag:"guide", url:"" },
+    { title:"Lucid Chart journey building guide", desc:"Process for building and getting Lucid Chart journey maps approved.", tag:"guide", url:"" },
+  ]},
+  { category:"Templates", items:[
+    { title:"Campaign proofing document", desc:"Template for proofing assets before stakeholder sign-off.", tag:"template", url:"" },
+    { title:"MarTech request brief template", desc:"Brief template for requesting Eng/MarTech scoping and support.", tag:"template", url:"" },
+    { title:"MOPS feedback survey", desc:"Post-launch survey for complex campaigns or new stakeholders.", tag:"template", url:"" },
+  ]},
+  { category:"Trackers & boards", items:[
+    { title:"Experiment export Google Sheet", desc:"Sheet for encoding test/control lists for post-campaign analysis.", tag:"tracker", url:"" },
+    { title:"MOPS requests & projects board", desc:"Asana board tracking all active MOPS campaign requests.", tag:"tracker", url:"" },
+    { title:"Brand marketing hotsheet board", desc:"Asana board for campaigns requiring Brand Marketing support.", tag:"tracker", url:"" },
+    { title:"Lifecycle Marketing alerts doc", desc:"Document for compiling Looker alert setups post-launch.", tag:"tracker", url:"" },
+  ]},
+  { category:"References", items:[
+    { title:"QA checklist", desc:"Basic checklist for MOPS internal QA before stakeholder proofing.", tag:"ref", url:"" },
+    { title:"MOPS metrics dashboard", desc:"Monitor QA scores and issue resolution across all campaigns.", tag:"ref", url:"" },
+    { title:"Statsig setup reference", desc:"Quick-reference for Statsig campaign experiment configuration.", tag:"ref", url:"" },
+  ]}
+];
+
+const TAG_LABELS = { sop:"SOP", guide:"Guide", template:"Template", tracker:"Tracker", ref:"Reference" };
+const TAG_COLORS = { sop:"tag-purple", guide:"tag-teal", template:"tag-amber", tracker:"tag-coral", ref:"tag-gray" };
+const ICON_COLORS = { sop:"background:var(--purple-bg);color:var(--purple-text)", guide:"background:var(--teal-bg);color:var(--teal-text)", template:"background:var(--amber-bg);color:var(--amber-text)", tracker:"background:var(--coral-bg);color:var(--coral-text)", ref:"background:var(--gray-bg);color:var(--gray-text)" };
+const ICONS = { sop:"📋", guide:"📖", template:"📄", tracker:"📊", ref:"✅" };
+
+let activeChip = 'all';
+let libSearch = '';
+
+function showPage(id, btn) {
+  document.querySelectorAll('.section-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function toggleStep(card) { card.classList.toggle('open'); }
+function toggleMember(card) { card.classList.toggle('expanded'); }
+
+function setChip(tag, btn) {
+  activeChip = tag;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  renderLib();
+}
+
+function filterLib() {
+  libSearch = document.getElementById('lib-search').value.toLowerCase();
+  renderLib();
+}
+
+async function askAI() {
+  const q = document.getElementById('lib-search').value.trim();
+  if (!q) return;
+  const box = document.getElementById('ai-answer');
+  const text = document.getElementById('ai-text');
+  const dot = document.getElementById('ai-dot');
+  box.classList.add('show');
+  text.textContent = 'Thinking…';
+  text.style.color = 'var(--text-3)';
+  dot.classList.add('thinking');
+
+  const context = LIBRARY.flatMap(s => s.items.map(i => `- ${i.title}: ${i.desc}`)).join('\n');
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6', max_tokens: 1000,
+        system: `You are the MOPS Documentation Assistant. Help team members find resources and understand MOPS campaign deployment processes. Be concise and practical. Available resources:\n\n${context}`,
+        messages: [{ role: 'user', content: q }]
+      })
+    });
+    const data = await res.json();
+    const answer = data.content?.find(b => b.type === 'text')?.text || 'No answer returned.';
+    text.innerHTML = answer.replace(/\n/g, '<br>');
+    text.style.color = 'var(--text-2)';
+  } catch {
+    text.textContent = 'Could not reach AI. Check your connection.';
+  }
+  dot.classList.remove('thinking');
+}
+
+function renderLib() {
+  const container = document.getElementById('lib-content');
+  let html = ''; let total = 0;
+  LIBRARY.forEach(section => {
+    const filtered = section.items.filter(i => {
+      const tagOk = activeChip === 'all' || i.tag === activeChip;
+      const searchOk = !libSearch || (i.title + i.desc).toLowerCase().includes(libSearch);
+      return tagOk && searchOk;
+    });
+    if (!filtered.length) return;
+    total += filtered.length;
+    html += `<div class="lib-section"><div class="lib-section-label">${section.category}</div><div class="lib-grid">`;
+    filtered.forEach(item => {
+      const hasLink = !!item.url;
+      html += `<a class="lib-card" ${hasLink ? `href="${item.url}" target="_blank" rel="noopener"` : 'href="#" onclick="return false"'}>
+        <div class="lib-card-top">
+          <div class="lib-card-icon" style="${ICON_COLORS[item.tag]}">${ICONS[item.tag]}</div>
+          <span class="lib-card-ext">${hasLink ? '↗' : '·'}</span>
+        </div>
+        <div class="lib-card-title">${item.title}</div>
+        <div class="lib-card-desc">${item.desc}</div>
+        <div class="lib-card-foot">
+          <span class="tag ${TAG_COLORS[item.tag]}">${TAG_LABELS[item.tag]}</span>
+          <div class="link-dot ${hasLink ? 'on' : ''}" title="${hasLink ? 'Link available' : 'Link pending'}"></div>
+        </div>
+      </a>`;
+    });
+    html += `</div></div>`;
+  });
+  if (!total) html = `<div class="empty-state">No resources match. Try a different search or ask AI above.</div>`;
+  container.innerHTML = html;
+}
+
+function openLink(url) { window.open(url, '_blank'); }
+
+renderLib();
+</script>
+</html>
