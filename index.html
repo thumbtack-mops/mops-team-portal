@@ -184,6 +184,11 @@ body {
   display: flex; align-items: center; justify-content: center;
   font-size: 18px; margin-bottom: 14px;
 }
+.about-card-icon-wrap svg { width: 17px; height: 17px; stroke: var(--accent); }
+.channel-icon { font-size: 22px; margin-bottom: 8px; color: var(--accent); display:flex; align-items:center; justify-content:center; }
+.channel-icon svg { width: 22px; height: 22px; stroke: var(--accent); }
+.flagship-icon { font-size: 24px; color: var(--accent); }
+.flagship-icon svg { width: 24px; height: 24px; stroke: var(--accent); }
 .about-card-title { font-size: 14px; font-weight: 600; margin-bottom: 10px; color: var(--text); }
 .about-card-text { font-size: 13px; color: var(--text-2); line-height: 1.7; }
 .about-list { list-style: none; }
@@ -434,44 +439,83 @@ body {
   <!-- ── Sidebar ── -->
   <nav class="sidebar">
     <div class="sidebar-head">
-      <div class="sidebar-badge">Marketing Operations</div>
+      <div class="sidebar-badge">Marketing Operations · COE</div>
       <div class="sidebar-title">MOPS Team Portal</div>
       <div class="sidebar-sub">Internal resource · Jun 2026</div>
     </div>
 
+    <!-- Portal -->
     <div class="nav-group">
       <div class="nav-group-label">Portal</div>
       <button class="nav-item active" onclick="showPage('about',this)">
         <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span> About MOPS
       </button>
+    </div>
+
+    <div class="nav-divider"></div>
+
+    <!-- People -->
+    <div class="nav-group">
+      <div class="nav-group-label">People</div>
       <button class="nav-item" onclick="showPage('team',this)">
         <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> The team
       </button>
+      <button class="nav-item" onclick="showPage('qaward',this)">
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></span> QA Excellence Award
+      </button>
+      <button class="nav-item" onclick="showPage('bulletin',this)">
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span> MOPS Bulletin
+      </button>
+    </div>
+
+    <div class="nav-divider"></div>
+
+    <!-- Operations -->
+    <div class="nav-group">
+      <div class="nav-group-label">Operations</div>
       <button class="nav-item" onclick="showPage('intake',this)">
         <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></span> Campaign intake
       </button>
+      <button class="nav-item" onclick="showPage('hqdash',this)">
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span> MOPS HQ Dashboard
+      </button>
+      <button class="nav-item" onclick="showPage('qa',this)">
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span> Campaign QA
+      </button>
+    </div>
+
+    <div class="nav-divider"></div>
+
+    <!-- Standards & Governance -->
+    <div class="nav-group">
+      <div class="nav-group-label">Standards & Governance</div>
+      <button class="nav-item" onclick="showPage('standards',this)">
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> MOPS Standards & SLAs
+      </button>
+      <button class="nav-item" onclick="showPage('manifesto',this)">
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span> How we work
+      </button>
+      <button class="nav-item" onclick="showPage('request',this)">
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span> Request MOPS support
+      </button>
+    </div>
+
+    <div class="nav-divider"></div>
+
+    <!-- Knowledge -->
+    <div class="nav-group">
+      <div class="nav-group-label">Knowledge</div>
       <button class="nav-item" onclick="showPage('library',this)">
         <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> MOPS Library
       </button>
       <button class="nav-item" onclick="showPage('onboarding',this)">
         <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span> New hire onboarding
       </button>
-      <button class="nav-item" onclick="showPage('qa',this)">
-        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span> Campaign QA
-      </button>
-      <button class="nav-item" onclick="showPage('bulletin',this)">
-        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span> MOPS Bulletin
-      </button>
-      <button class="nav-item" onclick="showPage('qaward',this)">
-        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></span> QA Excellence Award
-      </button>
-      <button class="nav-item" onclick="showPage('hqdash',this)">
-        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span> MOPS HQ Dashboard
-      </button>
     </div>
 
     <div class="nav-divider"></div>
 
+    <!-- Quick links -->
     <div class="nav-group">
       <div class="nav-group-label">Quick links</div>
       <button class="nav-item" onclick="openLink('https://docs.google.com/document/d/1R9DUfJrG-I_G1h-GNp5XWCjz15WBvuUcU_tbfEYy7oM')">
@@ -510,7 +554,7 @@ body {
 
       <div class="about-grid">
         <div class="about-card" style="grid-column: span 2;">
-          <div class="about-card-icon-wrap">⚡</div>
+          <div class="about-card-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
           <div class="about-card-title">What we do</div>
           <div class="about-card-text" style="margin-bottom:14px;">
             MOPS (Marketing Operations) handles end-to-end campaign deployment — from intake and build to QA and post-launch monitoring. We ensure campaigns are launched efficiently, accurately, and on time.
@@ -525,7 +569,7 @@ body {
         </div>
 
         <div class="about-card">
-          <div class="about-card-icon-wrap">🤝</div>
+          <div class="about-card-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 7.65l1.06 1.06L12 21.23l7.36-7.14 1.06-1.06a5.4 5.4 0 0 0 0-7.65z"/></svg></div>
           <div class="about-card-title">Who we support & collaborate with</div>
           <div class="collab-list">
 
@@ -605,7 +649,7 @@ body {
         </div>
 
         <div class="about-card">
-          <div class="about-card-icon-wrap">🛠</div>
+          <div class="about-card-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
           <div class="about-card-title">Tools & platforms</div>
           <div class="collab-list">
 
@@ -667,19 +711,19 @@ body {
       <div class="section-block-title">Channels we support</div>
       <div class="channel-grid">
         <div class="channel-card">
-          <div class="channel-icon">📧</div>
+          <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
           <div class="channel-name">Email</div>
         </div>
         <div class="channel-card">
-          <div class="channel-icon">🔔</div>
+          <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
           <div class="channel-name">Push notifications</div>
         </div>
         <div class="channel-card">
-          <div class="channel-icon">💬</div>
+          <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
           <div class="channel-name">In-app messaging</div>
         </div>
         <div class="channel-card">
-          <div class="channel-icon">🌐</div>
+          <div class="channel-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
           <div class="channel-name">Landing pages</div>
         </div>
       </div>
@@ -692,28 +736,28 @@ body {
       <div class="flagship-grid">
 
         <div class="flagship-card">
-          <div class="flagship-icon">🌦️</div>
+          <div class="flagship-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg></div>
           <div class="flagship-name">Weather campaigns</div>
           <div class="flagship-desc">Triggered campaigns based on weather conditions in a user's location — driving timely, relevant outreach for seasonal demand.</div>
           <span class="tag tag-teal">Triggered</span>
         </div>
 
         <div class="flagship-card">
-          <div class="flagship-icon">🏆</div>
+          <div class="flagship-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
           <div class="flagship-name">Pro Rewards campaigns</div>
           <div class="flagship-desc">Campaigns recognizing and rewarding top-performing Pros — loyalty-driven communications across email and push.</div>
           <span class="tag tag-purple">Recurring</span>
         </div>
 
         <div class="flagship-card">
-          <div class="flagship-icon">🎉</div>
+          <div class="flagship-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
           <div class="flagship-name">Seasonal & ad hoc campaigns</div>
           <div class="flagship-desc">High-visibility campaigns tied to seasonal moments, holidays, or one-off business initiatives requiring full MOPS deployment support.</div>
           <span class="tag tag-amber">Seasonal</span>
         </div>
 
         <div class="flagship-card flagship-card-placeholder">
-          <div class="flagship-icon">➕</div>
+          <div class="flagship-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
           <div class="flagship-name">Add campaign</div>
           <div class="flagship-desc">More flagship campaigns to be added here.</div>
           <span class="tag tag-gray">Coming soon</span>
@@ -728,91 +772,318 @@ body {
       <div class="page-header">
         <div class="page-eyebrow">People</div>
         <div class="page-title">The team</div>
-        <div class="page-desc">Click any card to see lane focus and Slack contact.</div>
+        <div class="page-desc">Meet the MOPS crew — search by expertise, filter by role, or switch to org chart view.</div>
       </div>
 
-      <div class="section-block-title">Manager</div>
-      <div class="team-grid" style="margin-bottom:28px;">
-        <div class="member-card" onclick="toggleMember(this)">
-          <div class="avatar-wrap">
-            <img class="avatar-img" src="seann.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Seann Demafeliz" />
-            <div class="avatar-fallback" style="background:#E6F7FD;color:#006A91;display:none;">SD</div>
-          </div>
-          <div class="member-name">Seann Demafeliz</div>
-          <div class="member-role">Manager, Marketing Operations</div>
-          <span class="tag tag-purple">Manager</span>
-          <div class="lanes">
-            <div class="lanes-label">Lane focus</div>
-            <span class="lane-tag">Team Leadership & Strategy</span><span class="lane-tag">Vendor Management</span><span class="lane-tag">Stakeholder Management</span><span class="lane-tag">Data Management</span><span class="lane-tag">Capability Optimization</span><span class="lane-tag">Reporting & Analytics</span><span class="lane-tag">Hiring</span><span class="lane-tag">Best Practices Development</span><span class="lane-tag">Issue Triaging & Error Management</span><span class="lane-tag">Email Deliverability</span><span class="lane-tag">Statsig Experiment Review & Approval</span>
-            <div><a class="slack-link" href="https://thumbtack.slack.com/team/UHVEDJZUH" target="_blank" rel="noopener">💬 @Seann on Slack</a></div>
-          </div>
+      <!-- Controls row -->
+      <div class="team-controls">
+        <div class="team-search-wrap">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-3);pointer-events:none;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input class="team-search" id="team-search" type="text" placeholder="Search by name, expertise, or topic…" oninput="filterTeam()" />
         </div>
-      </div>
-
-      <div class="section-block-title">Operations managers</div>
-      <div class="team-grid" style="margin-bottom:28px;">
-        <div class="member-card" onclick="toggleMember(this)">
-          <div class="avatar-wrap">
-            <img class="avatar-img" src="manel.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Manel Martos" />
-            <div class="avatar-fallback" style="background:var(--teal-bg);color:var(--teal-text);display:none;">MM</div>
-          </div>
-          <div class="member-name">Manel Martos</div>
-          <div class="member-role">Marketing Operations Manager II</div>
-          <span class="tag tag-teal">Manager II</span>
-          <div class="lanes">
-            <div class="lanes-label">Lane focus</div>
-            <span class="lane-tag">Campaign Management</span><span class="lane-tag">Capacity Monitoring</span><span class="lane-tag">New Hire Onboarding & Training</span><span class="lane-tag">Process Documentation</span><span class="lane-tag">Audience Sizing POC (PRO)</span><span class="lane-tag">PRO & B2B POC (SME + QA)</span><span class="lane-tag">Process Improvement</span>
-            <div><a class="slack-link" href="https://thumbtack.slack.com/team/U015E6Z700N" target="_blank" rel="noopener">💬 @Manel on Slack</a></div>
-          </div>
+        <div class="team-filter-chips" id="team-filter-chips">
+          <button class="team-chip active" onclick="setTeamFilter('all',this)">All</button>
+          <button class="team-chip" onclick="setTeamFilter('manager',this)">Manager</button>
+          <button class="team-chip" onclick="setTeamFilter('poc',this)">Campaign Lane POC</button>
+          <button class="team-chip" onclick="setTeamFilter('associate',this)">Associate</button>
         </div>
-        <div class="member-card" onclick="toggleMember(this)">
-          <div class="avatar-wrap">
-            <img class="avatar-img" src="mc.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="MC Flores" />
-            <div class="avatar-fallback" style="background:var(--amber-bg);color:var(--amber-text);display:none;">MC</div>
-          </div>
-          <div class="member-name">MC Flores</div>
-          <div class="member-role">Marketing Operations Manager I</div>
-          <span class="tag tag-amber">Manager I</span>
-          <div class="lanes">
-            <div class="lanes-label">Lane focus</div>
-            <span class="lane-tag">Customer POC (SME + QA)</span><span class="lane-tag">Campaign Execution</span><span class="lane-tag">Stakeholder Communication</span><span class="lane-tag">Peer Review</span><span class="lane-tag">Continuous Improvement & Innovation</span><span class="lane-tag">Escalation</span><span class="lane-tag">Audience Sizing POC (Customer)</span>
-            <div><a class="slack-link" href="https://thumbtack.slack.com/team/U04Q5TWC5BN" target="_blank" rel="noopener">💬 @MC on Slack</a></div>
-          </div>
+        <div class="team-view-toggle">
+          <button class="team-view-btn active" id="view-cards-btn" onclick="setTeamView('cards',this)" title="Card view">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </button>
+          <button class="team-view-btn" id="view-org-btn" onclick="setTeamView('org',this)" title="Org chart">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="4" rx="1"/><rect x="1" y="18" width="6" height="4" rx="1"/><rect x="9" y="18" width="6" height="4" rx="1"/><rect x="17" y="18" width="6" height="4" rx="1"/><line x1="12" y1="6" x2="12" y2="12"/><line x1="4" y1="22" x2="4" y2="14"/><line x1="12" y1="22" x2="12" y2="14"/><line x1="20" y1="22" x2="20" y2="14"/><line x1="4" y1="14" x2="20" y2="14"/></svg>
+          </button>
         </div>
       </div>
 
-      <div class="section-block-title">Marketing operations associates</div>
-      <div class="team-grid">
-        <div class="member-card" onclick="toggleMember(this)">
-          <div class="avatar-wrap">
-            <img class="avatar-img" src="kim.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Kim Sampaga" />
-            <div class="avatar-fallback" style="background:var(--coral-bg);color:var(--coral-text);display:none;">KS</div>
-          </div>
-          <div class="member-name">Kim Sampaga</div>
-          <div class="member-role">Marketing Operations Associate</div>
-          <span class="tag tag-coral">Associate</span>
-          <div class="lanes">
-            <div class="lanes-label">Lane focus</div>
-            <span class="lane-tag">Customer & PRO Campaign Execution</span><span class="lane-tag">Stakeholder Communication</span><span class="lane-tag">Peer Review</span><span class="lane-tag">Continuous Improvement & Innovation</span><span class="lane-tag">Escalation</span>
-            <div><a class="slack-link" href="https://thumbtack.slack.com/team/U08EDJ5GM6E" target="_blank" rel="noopener">💬 @kim on Slack</a></div>
+      <!-- ── CARD VIEW ── -->
+      <div id="team-card-view">
+
+        <div class="section-block-title tm-section" data-group="manager">Manager</div>
+        <div class="team-grid" style="margin-bottom:28px;" id="group-manager">
+          <div class="member-card-v2" data-group="manager" data-expertise="team management ai champion statsig" data-ask="team strategy process improvement ai tools">
+            <div class="mc-banner" style="background:linear-gradient(135deg,#009FD9,#33B5E0);"></div>
+            <div class="mc-body">
+              <div class="mc-top">
+                <div class="mc-avatar-wrap">
+                  <img class="mc-avatar-img" src="seann.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Seann Demafeliz"/>
+                  <div class="mc-avatar-fallback" style="background:#E6F7FD;color:#006A91;">SD</div>
+                  <div class="mc-status online" title="Toggle status" onclick="toggleStatus(event,this)"></div>
+                </div>
+                <div class="mc-info">
+                  <div class="mc-name">Seann Demafeliz</div>
+                  <div class="mc-role">Manager, Marketing Operations</div>
+                  <div class="mc-tz">🕐 PHT · 6 am – 3 pm</div>
+                </div>
+              </div>
+              <div class="mc-working">
+                <div class="mc-working-label">Currently working on</div>
+                <div class="mc-working-text">— Ask Seann to update</div>
+              </div>
+              <div class="mc-expertise-row">
+                <span class="mc-exp-tag">Team Management</span>
+                <span class="mc-exp-tag">AI Champion</span>
+              </div>
+              <div class="mc-expandable" onclick="toggleMemberV2(this)">
+                <div class="mc-expand-label">Lane focus & contact <span class="mc-chevron">▾</span></div>
+                <div class="mc-expand-body">
+                  <div class="mc-ask-section">
+                    <div class="mc-ask-label">Ask me about</div>
+                    <div class="mc-ask-tags">
+                      <span class="mc-ask-tag" onclick="askAbout(event,'team strategy')">Team strategy</span>
+                      <span class="mc-ask-tag" onclick="askAbout(event,'process improvement')">Process improvement</span>
+                      <span class="mc-ask-tag" onclick="askAbout(event,'ai tools')">AI tools</span>
+                    </div>
+                  </div>
+                  <div class="mc-lanes-wrap">
+                    <span class="lane-tag">Team Leadership & Strategy</span><span class="lane-tag">Vendor Management</span><span class="lane-tag">Stakeholder Management</span><span class="lane-tag">Data Management</span><span class="lane-tag">Capability Optimization</span><span class="lane-tag">Reporting & Analytics</span><span class="lane-tag">Hiring</span><span class="lane-tag">Best Practices Development</span><span class="lane-tag">Issue Triaging & Error Management</span><span class="lane-tag">Email Deliverability</span><span class="lane-tag">Statsig Experiment Review & Approval</span>
+                  </div>
+                  <a class="slack-link" href="https://thumbtack.slack.com/team/UHVEDJZUH" target="_blank" rel="noopener">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.23a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.49h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10a16 16 0 0 0 6 6l1.27-.85a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+                    @Seann on Slack
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="member-card" onclick="toggleMember(this)">
-          <div class="avatar-wrap">
-            <img class="avatar-img" src="dimple.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Dimple Buluran" />
-            <div class="avatar-fallback" style="background:var(--blue-bg);color:var(--blue-text);display:none;">DB</div>
+
+        <div class="section-block-title tm-section" data-group="poc">Campaign Lane POC</div>
+        <div class="team-grid" style="margin-bottom:28px;" id="group-poc">
+
+          <div class="member-card-v2" data-group="poc" data-expertise="pardot sme operational structure development governance" data-ask="pardot b2b campaigns process documentation onboarding">
+            <div class="mc-banner" style="background:linear-gradient(135deg,#10B981,#33B5E0);"></div>
+            <div class="mc-body">
+              <div class="mc-top">
+                <div class="mc-avatar-wrap">
+                  <img class="mc-avatar-img" src="manel.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Manel Martos"/>
+                  <div class="mc-avatar-fallback" style="background:var(--teal-bg);color:var(--teal-text);">MM</div>
+                  <div class="mc-status online" title="Toggle status" onclick="toggleStatus(event,this)"></div>
+                </div>
+                <div class="mc-info">
+                  <div class="mc-name">Manel Martos</div>
+                  <div class="mc-role">Marketing Operations Manager II</div>
+                  <div class="mc-tz">🕐 PHT · 5 am – 2 pm</div>
+                </div>
+              </div>
+              <div class="mc-working">
+                <div class="mc-working-label">Currently working on</div>
+                <div class="mc-working-text">— Ask Manel to update</div>
+              </div>
+              <div class="mc-expertise-row">
+                <span class="mc-exp-tag">Pardot SME</span>
+                <span class="mc-exp-tag">Operational Structure</span>
+                <span class="mc-exp-tag">Development & Governance</span>
+              </div>
+              <div class="mc-expandable" onclick="toggleMemberV2(this)">
+                <div class="mc-expand-label">Lane focus & contact <span class="mc-chevron">▾</span></div>
+                <div class="mc-expand-body">
+                  <div class="mc-ask-section">
+                    <div class="mc-ask-label">Ask me about</div>
+                    <div class="mc-ask-tags">
+                      <span class="mc-ask-tag" onclick="askAbout(event,'pardot')">Pardot</span>
+                      <span class="mc-ask-tag" onclick="askAbout(event,'b2b campaigns')">B2B campaigns</span>
+                      <span class="mc-ask-tag" onclick="askAbout(event,'process documentation')">Process docs</span>
+                    </div>
+                  </div>
+                  <div class="mc-lanes-wrap">
+                    <span class="lane-tag">Campaign Management</span><span class="lane-tag">Capacity Monitoring</span><span class="lane-tag">New Hire Onboarding & Training</span><span class="lane-tag">Process Documentation</span><span class="lane-tag">Audience Sizing POC (PRO)</span><span class="lane-tag">PRO & B2B POC (SME + QA)</span><span class="lane-tag">Process Improvement</span>
+                  </div>
+                  <a class="slack-link" href="https://thumbtack.slack.com/team/U015E6Z700N" target="_blank" rel="noopener">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.23a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.49h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10a16 16 0 0 0 6 6l1.27-.85a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+                    @Manel on Slack
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="member-name">Dimple Buluran</div>
-          <div class="member-role">Marketing Operations Associate</div>
-          <span class="tag tag-blue">Associate</span>
-          <div class="lanes">
-            <div class="lanes-label">Lane focus</div>
-            <span class="lane-tag">Customer & PRO Campaign Execution</span><span class="lane-tag">Stakeholder Communication</span><span class="lane-tag">Peer Review</span><span class="lane-tag">Continuous Improvement & Innovation</span><span class="lane-tag">Escalation</span>
-            <div><a class="slack-link" href="https://thumbtack.slack.com/team/U0AS1M8CYLS" target="_blank" rel="noopener">💬 @Dimple on Slack</a></div>
+
+          <div class="member-card-v2" data-group="poc" data-expertise="customer campaigns sme iterable" data-ask="customer campaigns iterable audience segmentation">
+            <div class="mc-banner" style="background:linear-gradient(135deg,#F59E0B,#FBBF24);"></div>
+            <div class="mc-body">
+              <div class="mc-top">
+                <div class="mc-avatar-wrap">
+                  <img class="mc-avatar-img" src="mc.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="MC Flores"/>
+                  <div class="mc-avatar-fallback" style="background:var(--amber-bg);color:var(--amber-text);">MC</div>
+                  <div class="mc-status online" title="Toggle status" onclick="toggleStatus(event,this)"></div>
+                </div>
+                <div class="mc-info">
+                  <div class="mc-name">MC Flores</div>
+                  <div class="mc-role">Marketing Operations Manager I</div>
+                  <div class="mc-tz">🕐 PHT · 5 am – 2 pm</div>
+                </div>
+              </div>
+              <div class="mc-working">
+                <div class="mc-working-label">Currently working on</div>
+                <div class="mc-working-text">— Ask MC to update</div>
+              </div>
+              <div class="mc-expertise-row">
+                <span class="mc-exp-tag">Customer Campaigns SME</span>
+              </div>
+              <div class="mc-expandable" onclick="toggleMemberV2(this)">
+                <div class="mc-expand-label">Lane focus & contact <span class="mc-chevron">▾</span></div>
+                <div class="mc-expand-body">
+                  <div class="mc-ask-section">
+                    <div class="mc-ask-label">Ask me about</div>
+                    <div class="mc-ask-tags">
+                      <span class="mc-ask-tag" onclick="askAbout(event,'customer campaigns')">Customer campaigns</span>
+                      <span class="mc-ask-tag" onclick="askAbout(event,'iterable')">Iterable</span>
+                      <span class="mc-ask-tag" onclick="askAbout(event,'audience segmentation')">Audience segmentation</span>
+                    </div>
+                  </div>
+                  <div class="mc-lanes-wrap">
+                    <span class="lane-tag">Customer POC (SME + QA)</span><span class="lane-tag">Campaign Execution</span><span class="lane-tag">Stakeholder Communication</span><span class="lane-tag">Peer Review</span><span class="lane-tag">Continuous Improvement & Innovation</span><span class="lane-tag">Escalation</span><span class="lane-tag">Audience Sizing POC (Customer)</span>
+                  </div>
+                  <a class="slack-link" href="https://thumbtack.slack.com/team/U04Q5TWC5BN" target="_blank" rel="noopener">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.23a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.49h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10a16 16 0 0 0 6 6l1.27-.85a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+                    @MC on Slack
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-block-title tm-section" data-group="associate">Marketing Operations Associates</div>
+        <div class="team-grid" id="group-associate">
+
+          <div class="member-card-v2" data-group="associate" data-expertise="weather campaigns email deliverability iterable" data-ask="weather campaigns email deliverability iterable qa">
+            <div class="mc-banner" style="background:linear-gradient(135deg,#F43F5E,#FB7185);"></div>
+            <div class="mc-body">
+              <div class="mc-top">
+                <div class="mc-avatar-wrap">
+                  <img class="mc-avatar-img" src="kim.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Kim Sampaga"/>
+                  <div class="mc-avatar-fallback" style="background:var(--coral-bg);color:var(--coral-text);">KS</div>
+                  <div class="mc-status online" title="Toggle status" onclick="toggleStatus(event,this)"></div>
+                </div>
+                <div class="mc-info">
+                  <div class="mc-name">Kim Sampaga</div>
+                  <div class="mc-role">Marketing Operations Associate</div>
+                  <div class="mc-tz">🕐 PHT · 4 am – 1 pm</div>
+                </div>
+              </div>
+              <div class="mc-working">
+                <div class="mc-working-label">Currently working on</div>
+                <div class="mc-working-text">— Ask Kim to update</div>
+              </div>
+              <div class="mc-expertise-row">
+                <span class="mc-exp-tag">Weather Campaigns</span>
+                <span class="mc-exp-tag">Email Deliverability</span>
+              </div>
+              <div class="mc-expandable" onclick="toggleMemberV2(this)">
+                <div class="mc-expand-label">Lane focus & contact <span class="mc-chevron">▾</span></div>
+                <div class="mc-expand-body">
+                  <div class="mc-ask-section">
+                    <div class="mc-ask-label">Ask me about</div>
+                    <div class="mc-ask-tags">
+                      <span class="mc-ask-tag" onclick="askAbout(event,'weather campaigns')">Weather campaigns</span>
+                      <span class="mc-ask-tag" onclick="askAbout(event,'email deliverability')">Email deliverability</span>
+                      <span class="mc-ask-tag" onclick="askAbout(event,'qa')">QA</span>
+                    </div>
+                  </div>
+                  <div class="mc-lanes-wrap">
+                    <span class="lane-tag">Customer & PRO Campaign Execution</span><span class="lane-tag">Stakeholder Communication</span><span class="lane-tag">Peer Review</span><span class="lane-tag">Continuous Improvement & Innovation</span><span class="lane-tag">Escalation</span>
+                  </div>
+                  <a class="slack-link" href="https://thumbtack.slack.com/team/U08EDJ5GM6E" target="_blank" rel="noopener">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.23a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.49h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10a16 16 0 0 0 6 6l1.27-.85a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+                    @kim on Slack
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="member-card-v2" data-group="associate" data-expertise="campaign execution iterable stakeholder communication" data-ask="campaign execution iterable pro campaigns">
+            <div class="mc-banner" style="background:linear-gradient(135deg,#6366F1,#818CF8);"></div>
+            <div class="mc-body">
+              <div class="mc-top">
+                <div class="mc-avatar-wrap">
+                  <img class="mc-avatar-img" src="dimple.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="Dimple Buluran"/>
+                  <div class="mc-avatar-fallback" style="background:var(--blue-bg);color:var(--blue-text);">DB</div>
+                  <div class="mc-status online" title="Toggle status" onclick="toggleStatus(event,this)"></div>
+                </div>
+                <div class="mc-info">
+                  <div class="mc-name">Dimple Buluran</div>
+                  <div class="mc-role">Marketing Operations Associate</div>
+                  <div class="mc-tz">🕐 PHT · 6 am – 3 pm</div>
+                </div>
+              </div>
+              <div class="mc-working">
+                <div class="mc-working-label">Currently working on</div>
+                <div class="mc-working-text">— Ask Dimple to update</div>
+              </div>
+              <div class="mc-expertise-row">
+                <span class="mc-exp-tag">Campaign Execution</span>
+                <span class="mc-exp-tag">Iterable</span>
+              </div>
+              <div class="mc-expandable" onclick="toggleMemberV2(this)">
+                <div class="mc-expand-label">Lane focus & contact <span class="mc-chevron">▾</span></div>
+                <div class="mc-expand-body">
+                  <div class="mc-ask-section">
+                    <div class="mc-ask-label">Ask me about</div>
+                    <div class="mc-ask-tags">
+                      <span class="mc-ask-tag" onclick="askAbout(event,'campaign execution')">Campaign execution</span>
+                      <span class="mc-ask-tag" onclick="askAbout(event,'iterable')">Iterable</span>
+                      <span class="mc-ask-tag" onclick="askAbout(event,'pro campaigns')">PRO campaigns</span>
+                    </div>
+                  </div>
+                  <div class="mc-lanes-wrap">
+                    <span class="lane-tag">Customer & PRO Campaign Execution</span><span class="lane-tag">Stakeholder Communication</span><span class="lane-tag">Peer Review</span><span class="lane-tag">Continuous Improvement & Innovation</span><span class="lane-tag">Escalation</span>
+                  </div>
+                  <a class="slack-link" href="https://thumbtack.slack.com/team/U0AS1M8CYLS" target="_blank" rel="noopener">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.23a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.49h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10a16 16 0 0 0 6 6l1.27-.85a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+                    @Dimple on Slack
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="tm-no-results" id="tm-no-results" style="display:none;">No team members match your search.</div>
+      </div>
+
+      <!-- ── ORG CHART VIEW ── -->
+      <div id="team-org-view" style="display:none;">
+        <div class="org-chart">
+          <div class="org-node org-manager">
+            <div class="org-avatar" style="background:linear-gradient(135deg,#009FD9,#33B5E0);color:#fff;">SD</div>
+            <div class="org-name">Seann Demafeliz</div>
+            <div class="org-role">Manager, Marketing Operations</div>
+          </div>
+          <div class="org-children-line"></div>
+          <div class="org-children">
+            <div class="org-branch">
+              <div class="org-node org-poc">
+                <div class="org-avatar" style="background:linear-gradient(135deg,#10B981,#33B5E0);color:#fff;">MM</div>
+                <div class="org-name">Manel Martos</div>
+                <div class="org-role">Ops Manager II · PRO & B2B POC</div>
+              </div>
+            </div>
+            <div class="org-branch">
+              <div class="org-node org-poc">
+                <div class="org-avatar" style="background:linear-gradient(135deg,#F59E0B,#FBBF24);color:#fff;">MC</div>
+                <div class="org-name">MC Flores</div>
+                <div class="org-role">Ops Manager I · Customer POC</div>
+              </div>
+              <div class="org-sub-line"></div>
+              <div class="org-sub-children">
+                <div class="org-node org-associate">
+                  <div class="org-avatar" style="background:linear-gradient(135deg,#F43F5E,#FB7185);color:#fff;">KS</div>
+                  <div class="org-name">Kim Sampaga</div>
+                  <div class="org-role">Associate</div>
+                </div>
+                <div class="org-node org-associate">
+                  <div class="org-avatar" style="background:linear-gradient(135deg,#6366F1,#818CF8);color:#fff;">DB</div>
+                  <div class="org-name">Dimple Buluran</div>
+                  <div class="org-role">Associate</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
     <!-- ════ INTAKE PAGE ════ -->
     <div class="section-page" id="page-intake">
@@ -2106,6 +2377,111 @@ body {
       </div>
     </div>
 
+    <!-- ════ MOPS STANDARDS & SLAs ════ -->
+    <div class="section-page" id="page-standards">
+      <div class="page-header">
+        <div class="page-eyebrow">Standards & Governance</div>
+        <div class="page-title">MOPS Standards & SLAs</div>
+        <div class="page-desc">The quality standards, service level agreements, and campaign classification framework that define how MOPS operates.</div>
+      </div>
+      <div class="coe-coming-grid">
+        <div class="coe-coming-card">
+          <div class="coe-coming-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="coe-coming-title">QA Standards</div>
+          <div class="coe-coming-desc">Minimum QA requirements for every campaign type — email, push, in-app, landing pages.</div>
+          <span class="placeholder-badge">Coming soon</span>
+        </div>
+        <div class="coe-coming-card">
+          <div class="coe-coming-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="coe-coming-title">SLA Framework</div>
+          <div class="coe-coming-desc">Response and turnaround time commitments for intake, builds, and QA by campaign complexity.</div>
+          <span class="placeholder-badge">Coming soon</span>
+        </div>
+        <div class="coe-coming-card">
+          <div class="coe-coming-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+          <div class="coe-coming-title">Campaign Classification</div>
+          <div class="coe-coming-desc">Simple vs. complex campaign framework — how MOPS categorizes requests to allocate the right resources.</div>
+          <span class="placeholder-badge">Coming soon</span>
+        </div>
+        <div class="coe-coming-card">
+          <div class="coe-coming-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <div class="coe-coming-title">Escalation Paths</div>
+          <div class="coe-coming-desc">Who to go to for blockers, urgent requests, and cross-functional issues — and when to escalate.</div>
+          <span class="placeholder-badge">Coming soon</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ HOW WE WORK ════ -->
+    <div class="section-page" id="page-manifesto">
+      <div class="page-header">
+        <div class="page-eyebrow">Standards & Governance</div>
+        <div class="page-title">How we work</div>
+        <div class="page-desc">The operating principles, values, and norms that define the MOPS way of working — how we think, collaborate, and deliver.</div>
+      </div>
+      <div class="coe-coming-grid">
+        <div class="coe-coming-card">
+          <div class="coe-coming-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <div class="coe-coming-title">Operating principles</div>
+          <div class="coe-coming-desc">The core beliefs that guide how MOPS makes decisions, prioritizes work, and measures success.</div>
+          <span class="placeholder-badge">Coming soon</span>
+        </div>
+        <div class="coe-coming-card">
+          <div class="coe-coming-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="coe-coming-title">Team norms</div>
+          <div class="coe-coming-desc">How we communicate, give feedback, run meetings, and support each other day-to-day.</div>
+          <span class="placeholder-badge">Coming soon</span>
+        </div>
+        <div class="coe-coming-card">
+          <div class="coe-coming-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="coe-coming-title">Performance standards</div>
+          <div class="coe-coming-desc">What great work looks like at MOPS — the bar we hold ourselves to on quality, speed, and stakeholder experience.</div>
+          <span class="placeholder-badge">Coming soon</span>
+        </div>
+        <div class="coe-coming-card">
+          <div class="coe-coming-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+          <div class="coe-coming-title">MOPS manifesto</div>
+          <div class="coe-coming-desc">One page. Who we are, what we stand for, and why what we do matters to the business.</div>
+          <span class="placeholder-badge">Coming soon</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ REQUEST MOPS SUPPORT ════ -->
+    <div class="section-page" id="page-request">
+      <div class="page-header">
+        <div class="page-eyebrow">Standards & Governance</div>
+        <div class="page-title">Request MOPS support</div>
+        <div class="page-desc">Everything a stakeholder needs to know about working with MOPS — how to engage us, what we need, and what to expect in return.</div>
+      </div>
+      <div class="coe-coming-grid">
+        <div class="coe-coming-card">
+          <div class="coe-coming-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div>
+          <div class="coe-coming-title">How to submit a request</div>
+          <div class="coe-coming-desc">Step-by-step guide for stakeholders on how to submit a campaign request through Asana — what to fill in and what happens next.</div>
+          <span class="placeholder-badge">Coming soon</span>
+        </div>
+        <div class="coe-coming-card">
+          <div class="coe-coming-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <div class="coe-coming-title">How to write a good brief</div>
+          <div class="coe-coming-desc">What MOPS needs from a campaign brief to get started — audience, assets, timeline, and experiment details.</div>
+          <span class="placeholder-badge">Coming soon</span>
+        </div>
+        <div class="coe-coming-card">
+          <div class="coe-coming-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div class="coe-coming-title">What to expect & when</div>
+          <div class="coe-coming-desc">Realistic timelines by campaign type — so stakeholders can plan ahead and avoid last-minute rushes.</div>
+          <span class="placeholder-badge">Coming soon</span>
+        </div>
+        <div class="coe-coming-card">
+          <div class="coe-coming-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div class="coe-coming-title">XFN collaboration guide</div>
+          <div class="coe-coming-desc">How to work effectively with MOPS — creative handoffs, proofing responsibilities, and stakeholder dos & don'ts.</div>
+          <span class="placeholder-badge">Coming soon</span>
+        </div>
+      </div>
+    </div>
+
   </main>
 </div>
 
@@ -2343,6 +2719,77 @@ function backToLibrary() {
 function toggleStep(card) { card.classList.toggle('open'); }
 function toggleMember(card) { card.classList.toggle('expanded'); }
 function toggleCollab(item) { item.classList.toggle('open'); }
+
+function toggleMemberV2(el) {
+  el.classList.toggle('open');
+  el.querySelector('.mc-chevron').textContent = el.classList.contains('open') ? '▴' : '▾';
+}
+
+function toggleStatus(e, dot) {
+  e.stopPropagation();
+  if (dot.classList.contains('online')) {
+    dot.classList.remove('online'); dot.classList.add('away');
+    dot.title = 'Away — click to set online';
+  } else if (dot.classList.contains('away')) {
+    dot.classList.remove('away'); dot.classList.add('offline');
+    dot.title = 'Offline — click to set online';
+  } else {
+    dot.classList.remove('offline'); dot.classList.add('online');
+    dot.title = 'Online — click to change';
+  }
+}
+
+function setTeamView(view, btn) {
+  document.querySelectorAll('.team-view-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('team-card-view').style.display = view === 'cards' ? 'block' : 'none';
+  document.getElementById('team-org-view').style.display = view === 'org' ? 'block' : 'none';
+}
+
+let teamFilter = 'all';
+let teamSearch = '';
+
+function setTeamFilter(filter, btn) {
+  teamFilter = filter;
+  document.querySelectorAll('.team-chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  applyTeamFilter();
+}
+
+function filterTeam() {
+  teamSearch = document.getElementById('team-search').value.toLowerCase();
+  applyTeamFilter();
+}
+
+function applyTeamFilter() {
+  let anyVisible = false;
+  document.querySelectorAll('.member-card-v2').forEach(card => {
+    const group = card.dataset.group;
+    const exp = (card.dataset.expertise || '') + ' ' + (card.dataset.ask || '') + ' ' + card.querySelector('.mc-name').textContent;
+    const filterOk = teamFilter === 'all' || group === teamFilter;
+    const searchOk = !teamSearch || exp.toLowerCase().includes(teamSearch);
+    const show = filterOk && searchOk;
+    card.style.display = show ? '' : 'none';
+    if (show) anyVisible = true;
+  });
+  // Hide/show group labels
+  document.querySelectorAll('.tm-section').forEach(sec => {
+    const group = sec.dataset.group;
+    const groupEl = document.getElementById('group-' + group);
+    const hasVisible = groupEl && [...groupEl.querySelectorAll('.member-card-v2')].some(c => c.style.display !== 'none');
+    sec.style.display = hasVisible ? '' : 'none';
+    if (groupEl) groupEl.style.display = hasVisible ? '' : 'none';
+  });
+  document.getElementById('tm-no-results').style.display = anyVisible ? 'none' : 'block';
+}
+
+function askAbout(e, topic) {
+  e.stopPropagation();
+  document.getElementById('team-search').value = topic;
+  teamSearch = topic.toLowerCase();
+  applyTeamFilter();
+  document.getElementById('team-search').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
 
 function setChip(tag, btn) {
   activeChip = tag;
@@ -3006,7 +3453,71 @@ a.onboard-resource-item { color:var(--accent); }
 .onboard-sched-row:last-child { border-bottom:none; }
 .onboard-sched-header { background:var(--bg-2); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.07em; color:var(--text-3); }
 
-/* ── Google Calendar ── */
+/* ── Team page v2 ── */
+.team-controls { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:24px; }
+.team-search-wrap { position:relative; flex:1; min-width:200px; }
+.team-search { width:100%; font-size:13px; padding:9px 12px 9px 32px; border:1px solid var(--border-2); border-radius:var(--r-sm); background:var(--bg); color:var(--text); outline:none; font-family:inherit; box-shadow:var(--shadow); }
+.team-search:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,159,217,0.1); }
+.team-search::placeholder { color:var(--text-3); }
+.team-filter-chips { display:flex; gap:5px; flex-wrap:wrap; }
+.team-chip { font-size:12px; font-weight:500; padding:5px 12px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--text-2); cursor:pointer; font-family:inherit; transition:all 0.12s; }
+.team-chip:hover { border-color:var(--accent); color:var(--accent); }
+.team-chip.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+.team-view-toggle { display:flex; gap:4px; border:1px solid var(--border-2); border-radius:var(--r-sm); overflow:hidden; }
+.team-view-btn { background:transparent; border:none; padding:7px 10px; cursor:pointer; color:var(--text-3); display:flex; align-items:center; transition:all 0.12s; }
+.team-view-btn:hover { background:var(--bg-2); color:var(--text); }
+.team-view-btn.active { background:var(--accent-light); color:var(--accent); }
+.team-view-btn svg { stroke:currentColor; }
+.tm-no-results { font-size:13px; color:var(--text-3); padding:32px; text-align:center; }
+
+/* Member card v2 */
+.member-card-v2 { background:var(--bg); border:1px solid var(--border); border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--shadow); transition:all 0.15s; }
+.member-card-v2:hover { border-color:var(--border-2); box-shadow:var(--shadow-md); transform:translateY(-2px); }
+.mc-banner { height:52px; width:100%; }
+.mc-body { padding:0 16px 16px; }
+.mc-top { display:flex; gap:12px; align-items:flex-start; margin-top:-22px; margin-bottom:12px; }
+.mc-avatar-wrap { position:relative; flex-shrink:0; }
+.mc-avatar-img { width:52px; height:52px; border-radius:50%; object-fit:cover; border:3px solid var(--bg); display:block; }
+.mc-avatar-fallback { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:700; border:3px solid var(--bg); }
+.mc-status { position:absolute; bottom:2px; right:2px; width:12px; height:12px; border-radius:50%; border:2px solid var(--bg); cursor:pointer; transition:background 0.2s; }
+.mc-status.online { background:#10B981; }
+.mc-status.away { background:#F59E0B; }
+.mc-status.offline { background:var(--text-3); }
+.mc-info { padding-top:26px; flex:1; min-width:0; }
+.mc-name { font-size:14px; font-weight:600; color:var(--text); margin-bottom:2px; }
+.mc-role { font-size:12px; color:var(--text-2); margin-bottom:3px; line-height:1.4; }
+.mc-tz { font-size:11px; color:var(--text-3); }
+.mc-working { background:var(--bg-2); border-radius:var(--r-sm); padding:8px 10px; margin-bottom:10px; }
+.mc-working-label { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.07em; color:var(--text-3); margin-bottom:3px; }
+.mc-working-text { font-size:12px; color:var(--text-2); font-style:italic; }
+.mc-expertise-row { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:10px; }
+.mc-exp-tag { font-size:11px; font-weight:600; padding:3px 9px; border-radius:20px; background:var(--accent-light); color:var(--accent); border:1px solid rgba(0,159,217,0.2); }
+.mc-expandable { border-top:1px solid var(--border); padding-top:10px; cursor:pointer; }
+.mc-expand-label { font-size:12px; font-weight:500; color:var(--text-2); display:flex; justify-content:space-between; align-items:center; margin-bottom:0; }
+.mc-chevron { font-size:11px; color:var(--text-3); }
+.mc-expand-body { display:none; margin-top:12px; }
+.mc-expandable.open .mc-expand-body { display:block; }
+.mc-ask-section { margin-bottom:12px; }
+.mc-ask-label { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.07em; color:var(--text-3); margin-bottom:6px; }
+.mc-ask-tags { display:flex; flex-wrap:wrap; gap:4px; }
+.mc-ask-tag { font-size:11px; font-weight:500; padding:3px 10px; border-radius:20px; border:1px solid var(--border-2); color:var(--text-2); cursor:pointer; transition:all 0.12s; }
+.mc-ask-tag:hover { background:var(--accent); border-color:var(--accent); color:#fff; }
+.mc-lanes-wrap { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:10px; }
+
+/* Org chart */
+.org-chart { display:flex; flex-direction:column; align-items:center; padding:24px; background:var(--bg); border:1px solid var(--border); border-radius:var(--r-lg); box-shadow:var(--shadow); }
+.org-node { background:var(--bg-2); border:1px solid var(--border); border-radius:var(--r); padding:12px 16px; text-align:center; min-width:160px; box-shadow:var(--shadow); }
+.org-manager { border-top:3px solid var(--accent); min-width:220px; }
+.org-poc { border-top:3px solid #10B981; }
+.org-associate { border-top:3px solid #F43F5E; min-width:130px; }
+.org-avatar { width:42px; height:42px; border-radius:50%; margin:0 auto 8px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; }
+.org-name { font-size:13px; font-weight:600; color:var(--text); margin-bottom:3px; }
+.org-role { font-size:11px; color:var(--text-3); line-height:1.4; }
+.org-children-line { width:2px; height:28px; background:var(--border-2); }
+.org-children { display:flex; gap:32px; align-items:flex-start; justify-content:center; }
+.org-branch { display:flex; flex-direction:column; align-items:center; }
+.org-sub-line { width:2px; height:20px; background:var(--border-2); }
+.org-sub-children { display:flex; gap:12px; }
 .gcal-controls { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:12px; }
 .gcal-status { display:flex; align-items:center; gap:7px; font-size:12px; color:var(--text-3); }
 .gcal-status-dot { width:8px; height:8px; border-radius:50%; background:var(--border-2); flex-shrink:0; }
@@ -3064,6 +3575,15 @@ a.onboard-resource-item { color:var(--accent); }
 .gcal-event-badge { display:inline-block; font-size:11px; font-weight:600; padding:2px 9px; border-radius:20px; margin-bottom:8px; }
 .gcal-detail-ev-row { display:flex; align-items:center; gap:10px; padding:8px 10px; background:var(--bg-2); border-radius:var(--r-sm); cursor:pointer; transition:background 0.12s; }
 .gcal-detail-ev-row:hover { background:var(--bg-3); }
+
+/* ── COE placeholder cards ── */
+.coe-coming-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+.coe-coming-card { background:var(--bg); border:1px solid var(--border); border-radius:var(--r-lg); padding:22px; display:flex; flex-direction:column; gap:10px; box-shadow:var(--shadow); transition:all 0.15s; }
+.coe-coming-card:hover { border-color:var(--accent); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+.coe-coming-icon { width:40px; height:40px; border-radius:var(--r-sm); background:var(--accent-light); color:var(--accent); display:flex; align-items:center; justify-content:center; }
+.coe-coming-icon svg { stroke:var(--accent); }
+.coe-coming-title { font-size:14px; font-weight:600; color:var(--text); }
+.coe-coming-desc { font-size:13px; color:var(--text-2); line-height:1.65; flex:1; }
 
 /* ── Knowledge Base ── */
 .kb-search-row { margin-bottom:10px; }
