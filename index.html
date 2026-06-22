@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -280,57 +281,74 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 
       <div class="stats-bar">
         <div class="stat"><div class="stat-label">Team members</div><div class="stat-val">5</div></div>
-        <div class="stat"><div class="stat-label">ESPs supported</div><div class="stat-val">3</div></div>
+        <div class="stat"><div class="stat-label">Channels supported</div><div class="stat-val">4</div></div>
         <div class="stat"><div class="stat-label">Docs in library</div><div class="stat-val">18</div></div>
         <div class="stat"><div class="stat-label">Campaign phases</div><div class="stat-val">11</div></div>
       </div>
 
       <div class="about-grid">
-        <div class="about-card">
+        <div class="about-card" style="grid-column: span 2;">
           <div class="about-card-icon">◈</div>
           <div class="about-card-title">What we do</div>
-          <div class="about-card-text">MOPS (Marketing Operations) handles end-to-end campaign deployment — from intake and build to QA and post-launch monitoring. We ensure campaigns are launched efficiently, accurately, and on time.</div>
-        </div>
-        <div class="about-card">
-          <div class="about-card-icon">◉</div>
-          <div class="about-card-title">Who we support</div>
+          <div class="about-card-text" style="margin-bottom:12px;">MOPS (Marketing Operations) handles end-to-end campaign deployment — from intake and build to QA and post-launch monitoring. We ensure campaigns are launched efficiently, accurately, and on time. Our scope covers <strong>Campaign Execution & Management</strong> and <strong>Experimentation</strong>.</div>
+          <div style="font-size:12px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;">High-level responsibilities</div>
           <ul class="about-list">
-            <li><span class="about-list-dot"></span>Lifecycle Marketing team</li>
-            <li><span class="about-list-dot"></span>PRO B2B & Sales teams</li>
-            <li><span class="about-list-dot"></span>Brand Marketing</li>
-            <li><span class="about-list-dot"></span>Data Science & MarTech</li>
-            <li><span class="about-list-dot"></span>Engineering & Enablement Pod</li>
+            <li><span class="about-list-dot"></span>Responsible for all campaign execution activities from intake to post-analysis.</li>
+            <li><span class="about-list-dot"></span>Handles operational and tactical execution, including audience segmentation, journey building, and launch.</li>
+            <li><span class="about-list-dot"></span>Responsible for experimentation setup using Statsig — including setup, QA, maintenance, and reporting.</li>
+            <li><span class="about-list-dot"></span>Owns day-to-day management and troubleshooting of deployed campaigns.</li>
           </ul>
         </div>
+
+        <div class="about-card">
+          <div class="about-card-icon">◉</div>
+          <div class="about-card-title">Who we support & collaborate with</div>
+          <ul class="about-list">
+            <li><span class="about-list-dot"></span>Lifecycle Marketing</li>
+            <li><span class="about-list-dot"></span>Product Marketing & Pro Experience</li>
+            <li><span class="about-list-dot"></span>B2B Marketing</li>
+            <li><span class="about-list-dot"></span>Research</li>
+            <li><span class="about-list-dot"></span>Brand</li>
+            <li><span class="about-list-dot"></span>MarTech</li>
+            <li><span class="about-list-dot"></span>Engineering</li>
+            <li><span class="about-list-dot"></span>Data Science</li>
+          </ul>
+        </div>
+
         <div class="about-card">
           <div class="about-card-icon">◧</div>
           <div class="about-card-title">Tools & platforms</div>
-          <ul class="about-list">
+          <div style="font-size:11px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Owned & managed</div>
+          <ul class="about-list" style="margin-bottom:10px;">
             <li><span class="about-list-dot"></span>Iterable</li>
-            <li><span class="about-list-dot"></span>Pardot</li>
+          </ul>
+          <div style="font-size:11px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Co-owned</div>
+          <ul class="about-list" style="margin-bottom:10px;">
+            <li><span class="about-list-dot"></span>Salesforce Marketing Cloud Account Engagement (Pardot)</li>
+          </ul>
+          <div style="font-size:11px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Direct access, build only</div>
+          <ul class="about-list">
             <li><span class="about-list-dot"></span>Hightouch</li>
             <li><span class="about-list-dot"></span>Statsig</li>
-            <li><span class="about-list-dot"></span>Asana · Lucid Chart · Looker</li>
+            <li><span class="about-list-dot"></span>Contentful</li>
           </ul>
         </div>
+
         <div class="about-card">
           <div class="about-card-icon">◨</div>
           <div class="about-card-title">Our process</div>
-          <div class="about-card-text">Campaigns are assigned within 24–48 hours of intake. We follow an 11-step deployment process covering request, review, build, QA, launch, and post-launch monitoring.</div>
+          <div class="about-card-text" style="margin-bottom:10px;">Campaigns are assigned within 24–48 hours of intake. We follow an 11-step deployment process covering request, review, build, QA, launch, and post-launch monitoring.</div>
+          <div style="font-size:12px;color:var(--text-2);">See the full process in the <span style="color:var(--purple-text);cursor:pointer;" onclick="document.querySelector('[onclick*=intake]').click()">Campaign intake →</span> section.</div>
         </div>
       </div>
 
       <div class="divider"></div>
-      <div style="font-size:13px;font-weight:500;margin-bottom:12px;">Campaign types we handle</div>
+      <div style="font-size:13px;font-weight:500;margin-bottom:12px;">Channels we support</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <span class="tag tag-purple">Email campaigns</span>
+        <span class="tag tag-purple">Email</span>
         <span class="tag tag-teal">Push notifications</span>
-        <span class="tag tag-amber">In-app messages</span>
+        <span class="tag tag-amber">In-app messaging</span>
         <span class="tag tag-coral">Landing pages</span>
-        <span class="tag tag-gray">A/B experiments</span>
-        <span class="tag tag-purple">Triggered journeys</span>
-        <span class="tag tag-teal">B2B & Sales campaigns</span>
-        <span class="tag tag-amber">Lifecycle campaigns</span>
       </div>
     </div>
 
